@@ -1,0 +1,76 @@
+>TYPE   	D
+>NAME   	UDKRDOC.D
+>CODE   	DSTWOBUT.COD
+>BY     	@(#)$Author: Timk $
+>DATE   	@(#)$Date: 16-01-20 14:26 $
+>VERSION	@(#)$Revision: 13 $
+>ID     	28528
+
+>FILES ROWS 0
+#type id  name        dbtype mode autoload r0 r1 r2 r3 r4 r5 comment
+
+>TEXTINFO ROWS 0 SIZE 0
+#id    value    flags    text
+
+
+>STACK ROWS 100 SIZE 5000
+
+>FONT ROWS 9
+#id Hgt Wth Esc Ori Wgt Ita  Ul Sth Chs Opr Clp Qua Pch Name
+1    -9   0   0   0 400   0  0   0   0   0   0   0   0 "Arial"
+2   -11   0   0   0 400   0  0   0   0   0   0   0   0 "Arial"
+3   -11   0   0   0 400   1  0   0   0   0   0   0   0 "Arial"
+4   -11   0   0   0 700   0  0   0   0   0   0   0   0 "Arial"
+5   -13   0   0   0 400   0  0   0   0   0   0   0   0 "Arial"
+6   -13   0   0   0 400   1  0   0   0   0   0   0   0 "Arial"
+7   -13   0   0   0 700   0  0   0   0   0   0   0   0 "Arial"
+8   -16   0   0   0 400   0  0   0   0   0   0   0   0 "Arial"
+9   -19   0   0   0 400   0  0   0   0   0   0   0   0 "Arial"
+
+
+>COLOR ROWS 16
+#id color	comment
+1   0x0        	""
+2   0x808080   	""
+3   0x80       	""
+4   0x8080     	""
+5   0x8000     	""
+6   0x808000   	""
+7   0x800000   	""
+8   0x800080   	""
+9   0xffffff   	""
+A   0xc0c0c0   	""
+B   0xff       	""
+C   0xffff     	""
+D   0xff00     	""
+E   0xffff00   	""
+F   0xff0000   	""
+G   0xff00ff   	""
+
+
+>BRUSH ROWS 5 SIZE 100
+#id type	text
+1   0	0xff0000
+2   1	pattern
+3   2	tegel.bmp
+5   4	0xff
+6   5	0x0
+
+
+>APPEVENTS ROWS 2
+#id Eventname	ParamList
+1172	MenuChoiceBefore	(int iMenuChoice)
+1252	DSBroadcast	(int iMess, int iParam1, int iParam2, str sParam3, str sParam4)
+
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   140   245 S	-	-	"-"	  0	"Namnlös"
+
+>FORM MAIN ROWS 2 SIZE 30 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3    45  122  138   15   50 -	TP	-	pbOk	-	"ok.bmp,&Ok"
+B3     2  122  192   15   50 -	TP	-	pbCancel	-	"cancel.bmp,Av&bryt"
+
+>SOURCE
+

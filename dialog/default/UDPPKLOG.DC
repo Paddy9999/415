@@ -1,0 +1,103 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>COLOR ROWS 1
+#id color	comment
+I   0xd8d8d8   	""
+
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511      0     0   305   432 SHW	-	"-"	"-"	  0	"[KR System Produkter]LOG - Loggning"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM MAIN ROWS 1 SIZE 18 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30064   54   89   11   69 -	p	-	txText7	-	"Text"
+
+>FORM win7 ROWS 1 SIZE 4 "Exempelflik"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW    95   16    0  249  422 -	PWZä	-	win1	-	""
+
+>FORM win1 ROWS 2 SIZE 22 "Sektioner"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW    99   15    0  113  412 -	HPZ	-	win3	-	""
+WW 30002  129    0  119  412 -	PWZ:	-	Win30002	-	"Loggningsnivåer|0"
+
+>FORM win3 ROWS 20 SIZE 178 "Generellt"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T     87   18   10   11   58 -	ps	-	-	-	"Register:"
+T     89   34   10   11   58 -	ps	-	-	-	"Fil:"
+T    119    2  186   11   69 -	ps	F3	-	-	"Default dagar:"
+T    120   50   10   11   58 -	ps	-	-	-	"PTC:"
+T    121   66   10   11   58 -	Pisz|	-	-	-	"Skärm:"
+T    124   82   10   11   58 -	Pisz|	-	-	-	"Trace:"
+CB 30059   16   82  100   90 -	P	-	cbDefaultRegistry	-	""
+CB 30060   32   82  100   90 -	P	-	cbDefaultFile	-	""
+CB 30061   48   82  100   90 -	P	-	cbDefaultPTC	-	""
+CB 30062   64   82  100   90 -	P	-	cbDefaultScreen	-	""
+CB 30063   80   82  100   90 -	P	-	cbDefaultTrace	-	""
+T  30065    2   82   11   92 -	p	F3	txText8	-	"Default loggningsnivå:"
+D  30066   16  186   13   30 H4	P{	-	edDefaultDaysRegistry	-	"1"
+T  30071   50  186   11   69 -	p	-	txText11	-	"Se 850"
+T  30073   66  186   11   69 -	p	-	txText13	-	"-"
+T  30074   82  186   11   69 -	p	-	txText12	-	"-"
+D  30081   32  186   13   30 -	HPsj{	-	edDefaultDaysFile	-	"90"
+T  30083    2   10   11   58 -	p	F3	txText14	-	"Output:"
+WW 30085    0  258   40  152 -	P	DI	Win30085	-	""
+XB 30087   98   10   10   80 -	P	-	xbNewEntriesOnly	-	"Logga inte dubbletter"
+
+>FORM Win30002 ROWS 21 SIZE 114 "Win30002"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+GR 30004    6   11  106  207 -	PW	-	lcLogLevels	-	""
+T  30024   38  234   11   41 -	p	-	txText1	-	"Register:"
+T  30025   54  234   11   41 -	p	-	txText2	-	"Fil:"
+T  30026   70  234   11   41 -	p	-	txText3	-	"PTC:"
+T  30027   86  234   11   41 -	p	-	txText4	-	"Skärm:"
+T  30028  102  234   11   41 -	p	-	txText5	-	"Trace:"
+T  30033    8  234   11   41 -	p	-	txText6	-	"Kodnyckel:"
+D  30032    6  280   13   88 -	DPj{	-	edCode	-	"PROD\BKE"
+CB 30034   38  280  100   88 -	P	-	cbRegistry	-	""
+CB 30035   54  280  100   88 -	P	-	cbFile	-	""
+CB 30036   70  280  100   88 -	P	-	cbPTC	-	""
+CB 30037   86  280  100   88 -	P	-	cbScreen	-	""
+CB 30038  102  280  100   88 -	P	-	cbTrace	-	""
+T  30067   24  280   11   69 -	p	F3	txText9	-	"Loggningsnivå:"
+T  30068   24  374   11   24 -	p	F3	txText10	-	"Dagar:"
+D  30070   38  374   13   30 H4	P{	-	edDaysRegistry	-	"2"
+T  30078   72  374   11   32 -	p	-	txText16	-	"Se 850"
+T  30079   88  374   11   32 -	p	-	txText17	-	"-"
+T  30080  104  374   11   32 -	p	-	txText18	-	"-"
+D  30082   54  374   13   30 -	HPsj{	-	edDaysFile	-	"0"
+T  30084   24  234   11   41 -	p	F3	txText15	-	"Output:"
+
+>FORM lcLogLevels ROWS 6 SIZE 39 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30052    0    0   11   50 -	Hp	-	-	#18601	"Kodnyckel"
+T  30053    0    0   11   30 -	Hp	-	-	#18602	"Register"
+T  30054    0    0   11   30 -	Hp	-	-	#18603	"Fil"
+T  30055    0    0   11   30 -	Hp	-	-	#18604	"PTC"
+T  30056    0    0   11   30 -	Hp	-	-	#18605	"Skärm"
+T  30057    0    0   11   30 -	Hp	-	-	#18606	"Trace"
+
+>FORM Win30085 ROWS 1 SIZE 1 "Win30085"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+BM 30086    4    4   32  144 -	Qp	-	bmLogo	-	""
+
+>DSCHANGE ROWS 8
+#Id
+95 805306368 0 0 8 0
+99 805306368 4194304 0 9 0
+87 0 8 0 133 0
+89 0 8 0 133 0
+119 0 8 0 2179 0
+120 0 8 0 133 0
+121 524288 24 0 135 0
+124 524288 24 0 135 0
+
+

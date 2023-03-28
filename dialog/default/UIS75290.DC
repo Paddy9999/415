@@ -1,0 +1,63 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   332   564 SBW	-	"-"	"Segoe UI"	  9	"5109 Sök kr system loggregister"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM win1 ROWS 2 SIZE 9 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW    69  201   94   15  480 -	PZ	-	win6	-	""
+CB 30000   74    6  100   80 -	P	-	cbStatus	-	""
+
+>FORM lc1 ROWS 8 SIZE 111 "0"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  31507    0    0    8   18 -	Hp	-	-	#75290.75299	"Status"
+T  31500    0    0    8   14 -	Hp	-	-	#75290.75292	"Nivå"
+T  31501    0    0    8   21 -	Hp	-	-	#75290.75293	"Datum"
+T  31502    0    0    8   24 -	Hp	-	-	#75290.75294	"Tid"
+T  31503    0    0    8  256 -	Hp	-	-	#75290.75295	"Nyckel1"
+T  31504    0    0    8  256 -	Hp	-	-	#75290.75296	"Nyckel2"
+T  31505    0    0    8  256 -	Hp	-	-	#75290.75297	"Text"
+T  31506    0    0    8  256 -	Hp	-	-	#75290.75298	"Felkod"
+
+>TABORDER lc1 ROWS 11
+#Id
+25000
+31507
+25001
+31500
+31501
+31502
+31503
+31504
+31505
+31506
+31508
+
+
+>LCFORMAT lc1 ROWS 10
+#Id
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+
+
+>DSCHANGE ROWS 1
+#Id
+69 805306368 0 0 7 0
+
+

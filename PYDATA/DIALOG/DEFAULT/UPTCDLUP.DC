@@ -1,0 +1,17 @@
+>BY KR
+
+>VERSION 
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 3 SIZE 63 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3 30000   10   34   15  144 -	CQP	-	pbCommand1	-	"Manuell körning"
+B3 30002   34   34   15  146 -	CQP	-	pbCommand2	-	"Skapa Demo Fil"
+B3 30003   60   34   15  146 -	CQP	-	pbCommand3	-	"Öppna 'UDD:LUPTC.ini'"
+

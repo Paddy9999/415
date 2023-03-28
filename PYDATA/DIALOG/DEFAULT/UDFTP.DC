@@ -1,0 +1,65 @@
+>BY KR
+
+>VERSION 
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>WINDOW ROWS 1
+#id       r     c    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   332   466 SW	D9	"-"	"-"	  0	"5680 FTP"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM MAIN ROWS 6 SIZE 41 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3   124  221  334   15   50 -	CTHPswz	-	pbOk	-	"Ok"
+B3 24002  221  390   15   50 -	CTHPswz	-	pbCancel	-	"Avbryt"
+WW   126    2    2  200  450 -	PWZ	-	win1	-	""
+D  30001  205  697   13   60 -	P	-	edEdit2	-	""
+EM 30015  220    8   93  306 -	Pä	-	edStatus	-	""
+B3 30016  244  334   66  106 -	CQP	-	pbConnect	-	"Connect"
+
+>FORM win1 ROWS 20 SIZE 139 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+D  30003   27  320   13  110 -	P{	-	edUser	-	"Admin"
+T  30004   30  278   11   28 -	p	-	txUser	-	"User"
+T  30005   52  278   11   40 -	p	-	txPassword	-	"Password"
+D  30006   50  320   13  110 -	P{	-	edPassword	-	"villvill"
+RB 30009   54   24   10   34 -	RP	-	rbRadio1	-	"FTP"
+RB 30010   54   60   10   58 -	RP	-	rbRadio2	-	"FTPSnodata"
+RB 30011   54  118   10   58 -	RP	-	rbRadio3	-	"FTPSwithdata"
+RB 30012   54  180   10   58 -	RP	-	rbRadio4	-	"FTPSimplicit"
+RB 30013   54  238   10   33 -	RP	-	rbRadio5	-	"SFTP"
+D  30017   27  666   13   60 -	P	-	edEdit1	-	""
+T  30018   30   26   11   30 -	p	-	txText1	-	"Server"
+D  30019   28   66   13  108 -	P{	-	edServer	-	"localhost"
+TR 30020  285  735   80   70 -	P	-	Ange	-	"till LIB:et som s	-	"""
+T  30021   28  200   11   18 -	p	-	txPort	-	"Port"
+D  30022   28  220   13   38 -	P{	-	edPort	-	"21"
+D  30023   78   36   13  410 -	P{	-	edPath	-	"/"
+T  30024   80   14   11   30 -	p	-	txText2	-	"Path"
+GR 30025   96  218   96  223 -	P	-	ListFiles	-	""
+GR 30031   96   16   96  188 -	P	-	ListDir	-	""
+GB 30002   11   13   63  433 -	p	-	gbGroup1	-	"Grupp"
+
+>FORM ListFiles ROWS 4 SIZE 23 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30026    0    0   11  100 -	Hp	-	-	#18631	"Name"
+T  30027    0    0   11   40 -	Hp	-	-	#18632	"Datum"
+T  30028    0    0   11   30 -	Hp	-	-	#18633	"Tid"
+T  30029    0    0   11   30 -	Hp	-	-	#18634	"Storlek"
+
+>FORM ListDir ROWS 1 SIZE 8 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30032    0    0   11  765 -	Hp	-	-	#18631	"Katalog"
+
+>DSCHANGE ROWS 3
+#Id
+124 65536 65544 0 3 0
+24002 65536 65544 0 3 0
+126 805306368 0 0 15 0
+
+

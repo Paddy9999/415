@@ -1,0 +1,63 @@
+// Programnamn: (namn) Datum: (datum)
+// Utvecklare: (namn) Företag: (namn)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//
+
+@global
+
+function  fvtest()
+begin
+		
+		""->s02 // GTIN of Contained Trade Items
+		""->s15 // Best Before Date (YYMMDD)
+		""->s37 // Number of Units Contained
+		""->s00 // Serial Shipping Container Code (SSCC)
+		""->s10 // Batch/Lot Number
+		""->s01 // Global Trade Item Number (GTIN)
+		
+	ifl mid(ww_textget(edEditText,0),1,2)%S%T = "02"		
+		trace("Börja på 02")
+		mid(ww_textget(edArt,0),3,14)%S%T -> s02   //14 GTIN of Contained Trade Items 
+		mid(ww_textget(edArt,0),19,6)%S%T -> s15   //6 Best Before Date (YYMMDD) ANIL Denna ska in i #18207 i Lu3370 och/eller #18208 i Lu36 //Bäst föredatum
+		mid(ww_textget(edArt,0),27,6)%S%T -> s37   //1-8 Number of Units Contained
+		mid(ww_textget(edArt,0),3,14)%S%T -> s01   //14 GTIN of Contained Trade Items
+		mid(ww_textget(edArt,0),19,20)%S%T -> s10   //1-20 Number of Units Contained
+
+	else_ifl ifl mid(ww_textget(edEditText,0),1,2)%S%T = "00"
+		trace("Börja på 00")
+		mid(ww_textget(edArt,0),3,14)%S%T -> s02   //GTIN of Contained Trade Items
+		mid(ww_textget(edArt,0),19,6)%S%T -> s15   //Best Before Date (YYMMDD) ANIL Denna ska in i #18207 i Lu3370 och/eller #18208 i Lu36 //Bäst föredatum
+		mid(ww_textget(edArt,0),27,6)%S%T -> s37   //Number of Units Contained
+		mid(ww_textget(edArt,0),3,14)%S%T -> s01   //GTIN of Contained Trade Items
+		mid(ww_textget(edArt,0),19,20)%S%T -> s10   //Number of Units Contained
+		 
+	else
+		trace("Fel Börjar inte på 02 eller 00")
+		exitfunc
+		
+	endifl	 
+
+end
+
+02050101022258001524030737600037311180200810691910L2335
+1234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5
+
+0037311180200810691910L23350205010102225800152403073760
+1234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5
+
+
+@pbCommand1_click
+ww_textset(edEditText,"0037311180200810691910L23350205010102225800152403073760")
+
+@pbCommand2_click
+ww_textset(edEditText,"02050101022258001524030737600037311180200810691910L2335")
+
+
+@pbCommand3_click
+fvtext()

@@ -1,0 +1,150 @@
+function qmain
+begin
+þþ000:000011#uselib dsstd
+þþ000:000012#uselib DSDBASE
+þþ000:000013
+þþ000:000014function fv_FTP_Connect()
+þþ000:000015begin
+þþ000:000016
+þþ000:000017str sFTPProtpkoll, sFTPServer, sFTPPort, sFTPUser, sFTPPassword, sStatus
+þþ000:000018
+þþ000:000019ifl bm_get_check( 30009   )=1
+þþ000:000020//FTP
+þþ000:000021"FTP_PROTOCOL=FTP"->sFTPProtpkoll
+þþ000:000022endifl
+þþ000:000023
+þþ000:000024ifl bm_get_check( 30010   )=1
+þþ000:000025//FTPSnodata
+þþ000:000026"FTP_PROTOCOL=FTPSNODATA"->sFTPProtpkoll
+þþ000:000027endifl
+þþ000:000028
+þþ000:000029ifl bm_get_check( 30011   )=1
+þþ000:000030//FTPSnodata
+þþ000:000031"FTP_PROTOCOL=FTPSWITHDATA"->sFTPProtpkoll
+þþ000:000032endifl
+þþ000:000033
+þþ000:000034ifl bm_get_check( 30012   )=1
+þþ000:000035//FTPSimplicit
+þþ000:000036"FTP_PROTOCOL=FTPSIMPLICIT"->sFTPProtpkoll
+þþ000:000037endifl
+þþ000:000038
+þþ000:000039ifl bm_get_check( 30013   )=1
+þþ000:000040//SFTP
+þþ000:000041"FTP_PROTOCOL=SFTP"->sFTPProtpkoll
+þþ000:000042endifl
+þþ000:000043
+þþ000:000044ww_textget( 30019   ,0) -> sFTPServer
+þþ000:000045ww_textget( 30022 ,0) -> sFTPPort
+þþ000:000046ww_textget( 30003 ,0) -> sFTPUser
+þþ000:000047ww_textget( 30006     ,0) -> sFTPPassword
+þþ000:000048
+þþ000:000049ftp_init(10, sFTPServer, sFTPUser, sFTPPassword, sFTPProtpkoll)
+þþ000:000050ifl C18
+þþ000:000051ftp_error_info(10,'E') -> sStatus
+þþ000:000052ww_textset( 30015   ,sStatus)
+þþ000:000053else
+þþ000:000054ftp_error_info(10,'M') -> sStatus
+þþ000:000055ww_textset( 30015   ,sStatus)
+þþ000:000056exitfunc
+þþ000:000057endifl
+þþ000:000058
+þþ000:000059end
+þþ000:000060
+þþ000:000061function fv_FTP_ChangeDir(str sDir)
+þþ000:000062begin
+þþ000:000063ftp_dir_change(10,sDir)
+þþ000:000064ifl C18
+þþ000:000065ww_textset( 30023 , ftp_dir_get(10))
+þþ000:000066else
+þþ000:000067ww_textset( 30015   ,"Kan inte ändra till " & sDir)
+þþ000:000068exitfunc
+þþ000:000069endifl
+þþ000:000070end
+þþ000:000071
+þþ000:000072function fv_FTP_Dir(str sDir)
+þþ000:000073begin
+þþ000:000074int iFTPStatus
+þþ000:000075
+þþ000:000076fv_FTP_ChangeDir(sDir)
+þþ000:000077
+þþ000:000078ftp_dir_first(10,"*.*",18631, 18632, 18633, 18634 ) -> iFTPStatus
+þþ000:000079while iFTPStatus<>0
+þþ000:000080lbDSTable_Append(186)
+þþ000:000081ftp_dir_next(10) -> iFTPStatus
+þþ000:000082wend
+þþ000:000083
+þþ000:000084lc_reset_content( 30025    )
+þþ000:000085lbDST_Find_F(186)
+þþ000:000086while not C17  
+þþ000:000087ifl lsDSDnr_Get(186,18631) ? ".DIR"
+þþ000:000088lvDSDNr_Set(186,18631,left(lsDSDnr_Get(186,18631)%S%T,LEN(lsDSDnr_Get(186,18631)%S%T)-4))
+þþ000:000089lc_add_data( 30031  )
+þþ000:000090lbDST_Find_N(186)
+þþ000:000091else
+þþ000:000092lc_add_data( 30025    )
+þþ000:000093lbDST_Find_N(186)
+þþ000:000094endifl
+þþ000:000095wend
+þþ000:000096end
+þþ000:000097
+þþ000:000098function fv_FTP_Close()
+þþ000:000099begin
+þþ000:000100ftp_close(10)
+þþ000:000101end
+þþ000:000102
+þþ000:000103Function fv_FTP_All(str sDir)
+þþ000:000104begin
+þþ000:000105lc_reset_content( 30031  )
+þþ000:000106lc_reset_content( 30025    )
+þþ000:000107
+þþ000:000108fv_FTP_Connect()
+þþ000:000109fv_FTP_Dir(sDir)
+þþ000:000110fv_FTP_Close()
+þþ000:000111
+þþ000:000112lbDSLu_T_Scratch(186)
+þþ000:000113lbDsTable_append(186)
+þþ000:000114end
+þþ000:000115
+þþ000:000116
+þþ000:000117@pbConnect_click
+þþ000:000118fv_FTP_All("/")
+þþ000:000119
+þþ000:000120@after_preshow
+þþ000:000121*rem
+þþ000:000122writeprofilestring("Server","Server","localhost","DAT:FTPSettings.ini")
+þþ000:000123writeprofilestring("Server","port","21","DAT:FTPSettings.ini")
+þþ000:000124writeprofilestring("Server","User","Admin","DAT:FTPSettings.ini")
+þþ000:000125writeprofilestring("Server","Password","villvill","DAT:FTPSettings.ini")
+þþ000:000126
+þþ000:000127*endrem
+þþ000:000128
+þþ000:000129ww_textset( 30019   , getprofilestring("Server","Server","DAT:FTPSettings.ini"))
+þþ000:000130ww_textset( 30022 , getprofilestring("Server","Port","DAT:FTPSettings.ini"))
+þþ000:000131ww_textset( 30003 ,  getprofilestring("Server","User","DAT:FTPSettings.ini"))
+þþ000:000132ww_textset( 30006     ,  getprofilestring("Server","Password","DAT:FTPSettings.ini"))
+þþ000:000133
+þþ000:000134@after_enter
+þþ000:000135
+þþ000:000136liDSTableCreateStart(186)
+þþ000:000137lbDSTableCreateField(186,18631,"A",255,"Name")
+þþ000:000138lbDSTableCreateField(186,18632,"A",25,"Datum")
+þþ000:000139lbDSTableCreateField(186,18633,"A",25,"Tid")
+þþ000:000140lbDSTableCreateField(186,18634,"A",25,"Storlek")
+þþ000:000141lvDSTableCreateEnd(186)
+þþ000:000142
+þþ000:000143lbDsTable_append(186)
+þþ000:000144
+þþ000:000145
+þþ000:000146@ListDir_dblclk
+þþ000:000147str sDirOld, SDirNy
+þþ000:000148ww_textget( 30023 ,0)&"/"-> sDirOld
+þþ000:000149lc_get_text( 30031  ,lc_get_cursel( 30031  ),1) -> sDirNy
+þþ000:000150
+þþ000:000151fv_FTP_All(sDirOld&sDirNy)
+þþ000:000152
+þþ000:000153
+
+subquit
+
+exitfunc
+end

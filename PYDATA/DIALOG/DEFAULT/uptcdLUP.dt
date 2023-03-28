@@ -1,0 +1,190 @@
+// Programnamn: (LUPTC) Datum: (220317)
+// Utvecklare: (Patrick Andersson) Företag: (KR System)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 22 Sign Kommentar
+//
+@global
+int igDSLu
+str sgLu
+str sgPath
+bool bgPTC
+
+
+#include ds.i
+
+#uselib dsdbase
+#uselib dsstd
+#uselib dsptc
+
+
+
+//-------------------------------------------------------------------------------------------------------------
+//Funktion som loopar igenom register och letar upp vilka fältnummer som finns.
+function fvFields(str sTabelSort)
+begin
+
+int iField
+
+0->iField
+while iField<=99999	//Standard fält
+	ifl d_in_lu(igDSLu, iField)=igDSLu
+		error(igDSLu)
+		lbDSTable_Append(189)
+		d_put(189,6901,iField)
+	endifl
+iField+1->iField
+wend
+
+end
+//-------------------------------------------------------------------------------------------------------------
+//funktion som skapar fil och fyller dem ed data från register
+function fvCreate_File(str sTabelSort)
+begin
+str sLine(9999)
+str sData
+
+
+ifl f_access(sgPath&#806%S%T&"-"&sgLu&'.CSV',0)=0	//Om fil finns raderas den
+	f_delete(sgPath&#806%S%T&"-"&sgLu&'.CSV')
+endifl
+
+f_open(sgPath&#806%S%T&"-"&sgLu&'.CSV',200,'c','')	//Skapa fil
+
+ifl sTabelSort="I" // Index register
+		lbDSFind_F(igDSLu)
+		//Benämningar
+		''->sLine
+		lbDST_Find_F(189)	
+		d_get(189,6901)%S%T&"_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine
+		lbDST_Find_N(189)	
+		while not Lu_eof(189)
+			sLine&';' & d_get(189,6901)%S%T & "_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine // Benämning inkl #fältnummer_Benämning
+			//sLine&';'&d_label(igDSLu,d_get(189,6901))%S%T->sLine // Liten benämning
+			lbDST_Find_N(189)	
+		wend
+		f_write_line(200,sLine)	//Skriver till fil
+
+		//Loopa igenom data
+		while not lu_eof(igDSLu)
+			''->sLine
+			lbDST_Find_F(189)			//Loopar igenom fält i register. Obs, första fältet skrivs direkt för att få rätt på ;
+			d_get(igDSLu,d_get(189,6901))%S%T->sLine	
+			lbDST_Find_N(189)	
+			while not Lu_eof(189)
+				d_get(igDSLu,d_get(189,6901))%S%T->sData
+				//if d_get(189,6901)%S%T='3161':Left(sData,4)->sData		//Justering av information i detta fal ta bort dag ur levvecka
+				sLine&';'&sData->sLine
+				lbDST_Find_N(189)	
+			wend
+			f_write_line(200,sLine)	//Skriver till fil
+			lbDSFind_N(igDSLu)
+		wend
+else // Tabell
+		lbDST_Find_F(igDSLu)
+		//Benämningar
+		''->sLine
+		lbDST_Find_F(189)	
+		d_get(189,6901)%S%T&"_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine
+		lbDST_Find_N(189)	
+		while not Lu_eof(189)
+			sLine&';' & d_get(189,6901)%S%T & "_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine // Benämning inkl #fältnummer_Benämning
+			//sLine&';'&d_label(igDSLu,d_get(189,6901))%S%T->sLine // Liten benämning
+			lbDST_Find_N(189)	
+		wend
+		f_write_line(200,sLine)	//Skriver till fil
+
+		//Loopa igenom data
+		while not lu_eof(igDSLu)
+			''->sLine
+			lbDST_Find_F(189)			//Loopar igenom fält i register. Obs, första fältet skrivs direkt för att få rätt på ;
+			d_get(igDSLu,d_get(189,6901))%S%T->sLine	
+			lbDST_Find_N(189)	
+			while not Lu_eof(189)
+				d_get(igDSLu,d_get(189,6901))%S%T->sData
+				//if d_get(189,6901)%S%T='3161':Left(sData,4)->sData		//Justering av information i detta fal ta bort dag ur levvecka
+				sLine&';'&sData->sLine
+				lbDST_Find_N(189)	
+			wend
+			f_write_line(200,sLine)	//Skriver till fil
+			lbDST_Find_N(igDSLu)
+		wend
+endifl
+
+
+f_close(200)	//Stäng fil
+end
+//-------------------------------------------------------------------------------------------------------------
+function fvStart()
+begin
+
+int iReg
+
+liDSTableCreateStart(189)
+lbDSTableCreateField(189,6901,"A",5,"Fältnummer")
+lvDSTableCreateEnd(189)
+
+getprofilestring('EXPORT','PATH','UDD:LUPTC.ini')->sgPath
+if bgPTC lvDSPTCLog(PTC_LOG_DETAILED,"Path: "&sgPath,"","","")
+
+1->iReg	//Loopar igenom ini fil för att hitta register
+
+while getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')%S%T<>''
+	getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')->sgLu
+	
+	error(sgLu & " " & lsDSRegisterType(sgLu)& " " & lsDSRegisterLabel(sgLu)  & " " &lsDSRegisterName(sgLu))
+	
+	if bgPTC lvDSPTCLog(PTC_LOG_DETAILED,iReg&" LU_"&sgLu,"","","")
+	if bgPTC lbDSPTCPing() 	
+	
+
+	ifl lsDSRegisterType(sgLu)= "I" // index register
+		error("1")	
+		lidsloadlu(sgLu,'I')->igDSLu
+		lbDSLu_T_Scratch(189)
+		fvFields("I")
+		error("2")	
+		fvCreate_File("I")
+		error("3")	
+		lbDSLu_Unload(igDSLu)
+	else	
+		lidsloadlu(sgLu,'T')->igDSLu // Tabeller
+		lbDSLu_T_Scratch(189)
+		fvFields("T")
+		fvCreate_File("T")
+		lbDSLu_Unload(igDSLu)
+	endifl 	
+	1+iReg->iReg
+wend
+
+end
+//-------------------------------------------------------------------------------------------------------------
+@pbCommand1_click
+	false->bgPTC
+	fvStart()
+	error('Klar')
+	
+@pbCommand2_click
+	// För att skapa test fil
+	ifl msgbox("Skapa Demo Fil. Gammal fil skrivs över", "Pyramid", 36) = 6
+		ifl f_access('UDD:LUPTC.ini',0)=0	//Om fil finns raderas den
+			f_delete('UDD:LUPTC.ini')
+		endifl
+		writeprofilestring('EXPORT', 'PATH', 'C:\TMP\', 'UDD:LUPTC.ini')	
+		writeprofilestring('Reg'&'1', 'Namn', 'PULAGER', 'UDD:LUPTC.ini')
+   	
+   	 
+	endifl
+
+@PtcExecute
+	true->bgPTC
+	lvDSPTCLog(PTC_LOG_STD,"Start","","","")
+	fvStart()
+	lvDSPTCLog(PTC_LOG_STD,"Klart","","","")
+	event_set(99)
+	
+	
+@pbCommand3_click
+	shell_execute("notepad.exe",path_name('UDD:')&'LUPTC.ini', "", 5)

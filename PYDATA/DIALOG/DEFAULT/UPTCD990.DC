@@ -1,0 +1,15 @@
+>BY KR
+
+>VERSION 
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 1 SIZE 28 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3 30000   34   12   68  198 -	CQP	-	pbCommand1	-	"Klart!"
+

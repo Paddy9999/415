@@ -1,0 +1,5 @@
+#export(4) lvDownloadLicenseFile()
+#export(1) str lsExtractWord(str,int,str)
+#export(5) str(10000) lsKRAPdeCrypt(str,int)
+#export(3) int liKRAPCheckLicens(str)
+#export(6) str lsKRAPCheckLicens(str)

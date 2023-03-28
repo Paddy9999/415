@@ -1,0 +1,24 @@
+// 	------------------------------------------------------------------------------------------------------------------
+*rem
+	Dialog:					UDPPKLOG.d
+	Pyramid ÅF:				KR-SYSTEM
+	Utvecklare:				FRLA - Fredrik Larsson
+	Skapad datum:			Mon 22-01-10
+	
+	Beskrivning:			Egenskapsdialog KRLOG
+	
+
+	
+	Ändringslogg:
+	Händelse/funktion										Datum/tid			Sign	Beskrivning
+	fvSetLogo												Sat 22-03-26		FIBA	Tagit bort krapi-libbet
+	Rättning													Wed 22-06-15		FRLA	Inställning för trace laddades inte korrekt i egenskapsdialogen.
+	Ny funktion												Wed 22-06-15		FRLA	Radera-knapp i egenskapsdialogen.
+
+
+//	------------------------------------------------------------------------------------------------------------------
+*endrem
+
+//produkter@krsystem.se
+//HIDESOURCE
+//: 

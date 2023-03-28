@@ -1,0 +1,23 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 6 SIZE 104 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3    45  123  117   15   50 -	CTHPs	-	pbOk	-	"Ok"
+D  30000   14  136   13   60 I3	HPs{	-	edDaysFiles	-	""
+D  30001   30  136   13   60 I3	P{	-	edDaysRegistry	-	""
+T  30002   15    7   11  123 -	Hps	-	txText1	-	"ULKRLOG\DefaultDaysHistoryFiles"
+T  30003   31    7   11  123 -	p	-	txText2	-	"ULKRLOG\DefaultDaysHistoryRegistry"
+B3 30004   60   12   15   99 -	CQP	-	pbSave	-	"Spara inställningar"
+
+>DSCHANGE ROWS 1
+#Id
+45 65536 65544 0 0 0
+
+

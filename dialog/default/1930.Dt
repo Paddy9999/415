@@ -1,0 +1,42 @@
+// 	------------------------------------------------------------------------------------------------------------------
+*rem
+	Dialog:					1930.d
+	Pyramid ÅF:				KR-SYSTEM
+	Utvecklare:				FIBA	- 	Filip Bahlsten
+	Skapad datum:			Mon 22-01-31 23:06
+	
+	Beskrivning:			Automatstarta vår egen startdialog
+	
+
+	
+	Ändringslogg:
+	Händelse/funktion										Datum/tid			Sign	Beskrivning
+	
+	
+
+//	------------------------------------------------------------------------------------------------------------------
+*endrem
+
+@global
+
+#uselib dsstd
+
+*define PATH_SAVE_SETTINGS_USER		= "UDU:udkr1930.ini"
+
+@after_enter
+	
+	// * Ska vi automatstarta vår egen startdialog? *
+	ifl getprofilestring("Settings", "AutoStart", PATH_SAVE_SETTINGS_USER) = 1
+		lvDsStartDialog("udkr1930.d",1,"")
+		dquit
+	endifl
+	
+@xbUdkr1930_click
+	// * Användaren markerar ruta för att använda vår egen startdialog *
+	ifl bm_get_check(xbUdkr1930) = 1
+		ifl liDSAsk("Automatstarta vår egen snabbstartsdialog vid start av 1930?",4) = 6
+			writeprofilestring("Settings", "AutoStart", 1, PATH_SAVE_SETTINGS_USER)
+			lvDsStartDialog("udkr1930.d",1,"")
+			dquit
+		endifl	
+	endifl

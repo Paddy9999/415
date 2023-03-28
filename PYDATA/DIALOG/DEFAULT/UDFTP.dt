@@ -1,0 +1,153 @@
+// Programnamn: (namn) Datum: (datum)
+// Utvecklare: (namn) Företag: (namn)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//
+
+@global
+#uselib dsstd
+#uselib DSDBASE
+
+function fv_FTP_Connect()
+begin
+
+	str sFTPProtpkoll, sFTPServer, sFTPPort, sFTPUser, sFTPPassword, sStatus
+	
+	ifl bm_get_check(rbRadio1)=1
+		//FTP
+		"FTP_PROTOCOL=FTP"->sFTPProtpkoll 
+	endifl
+	
+	ifl bm_get_check(rbRadio2)=1
+		//FTPSnodata
+		"FTP_PROTOCOL=FTPSNODATA"->sFTPProtpkoll
+	endifl
+	
+	ifl bm_get_check(rbRadio3)=1
+		//FTPSnodata
+		"FTP_PROTOCOL=FTPSWITHDATA"->sFTPProtpkoll
+	endifl
+	
+	ifl bm_get_check(rbRadio4)=1
+		//FTPSimplicit
+		"FTP_PROTOCOL=FTPSIMPLICIT"->sFTPProtpkoll
+	endifl
+	
+	ifl bm_get_check(rbRadio5)=1
+		//SFTP
+		"FTP_PROTOCOL=SFTP"->sFTPProtpkoll
+	endifl
+	
+	ww_textget(edServer,0) -> sFTPServer
+	ww_textget(edPort,0) -> sFTPPort
+	ww_textget(edUser,0) -> sFTPUser
+	ww_textget(edPassword,0) -> sFTPPassword
+	
+	ftp_init(10, sFTPServer, sFTPUser, sFTPPassword, sFTPProtpkoll)
+	ifl ok
+		ftp_error_info(10,'E') -> sStatus
+		ww_textset(edStatus,sStatus)
+	else
+		ftp_error_info(10,'M') -> sStatus
+		ww_textset(edStatus,sStatus)
+		exitfunc
+	endifl
+
+end
+
+function fv_FTP_ChangeDir(str sDir)
+begin
+	ftp_dir_change(10,sDir)
+	ifl ok
+		ww_textset(edPath, ftp_dir_get(10))
+	else
+		ww_textset(edStatus,"Kan inte ändra till " & sDir)
+		exitfunc
+	endifl
+end
+
+function fv_FTP_Dir(str sDir)
+begin
+	int iFTPStatus
+	
+	fv_FTP_ChangeDir(sDir)
+	
+	ftp_dir_first(10,"*.*",18631, 18632, 18633, 18634 ) -> iFTPStatus
+	while iFTPStatus<>0
+		lbDSTable_Append(186)
+		ftp_dir_next(10) -> iFTPStatus
+	wend
+
+	lc_reset_content(ListFiles)
+	lbDST_Find_F(186)
+	while not eof
+		ifl lsDSDnr_Get(186,18631) ? ".DIR"
+			lvDSDNr_Set(186,18631,left(lsDSDnr_Get(186,18631)%S%T,LEN(lsDSDnr_Get(186,18631)%S%T)-4))
+			lc_add_data(ListDir)
+			lbDST_Find_N(186)
+		else	
+			lc_add_data(ListFiles)
+			lbDST_Find_N(186)
+		endifl
+	wend
+end
+
+function fv_FTP_Close()
+begin
+	ftp_close(10)
+end
+
+Function fv_FTP_All(str sDir)
+begin
+	lc_reset_content(ListDir) 
+	lc_reset_content(ListFiles) 
+	
+	fv_FTP_Connect()
+	fv_FTP_Dir(sDir)
+	fv_FTP_Close()	
+	
+	lbDSLu_T_Scratch(186)
+	lbDsTable_append(186)
+end
+
+
+@pbConnect_click
+	fv_FTP_All("/")
+
+@after_preshow
+*rem
+writeprofilestring("Server","Server","localhost","DAT:FTPSettings.ini")
+writeprofilestring("Server","port","21","DAT:FTPSettings.ini")
+writeprofilestring("Server","User","Admin","DAT:FTPSettings.ini")
+writeprofilestring("Server","Password","villvill","DAT:FTPSettings.ini")
+
+*endrem
+
+ww_textset(edServer, getprofilestring("Server","Server","DAT:FTPSettings.ini"))
+ww_textset(edPort, getprofilestring("Server","Port","DAT:FTPSettings.ini"))
+ww_textset(edUser,  getprofilestring("Server","User","DAT:FTPSettings.ini"))
+ww_textset(edPassword,  getprofilestring("Server","Password","DAT:FTPSettings.ini"))
+
+@after_enter
+
+liDSTableCreateStart(186)
+	lbDSTableCreateField(186,18631,"A",255,"Name")
+	lbDSTableCreateField(186,18632,"A",25,"Datum")
+	lbDSTableCreateField(186,18633,"A",25,"Tid")
+	lbDSTableCreateField(186,18634,"A",25,"Storlek")		
+	lvDSTableCreateEnd(186)
+	
+lbDsTable_append(186)
+
+
+@ListDir_dblclk
+	str sDirOld, SDirNy
+	ww_textget(edPath,0)&"/"-> sDirOld
+	lc_get_text(ListDir,lc_get_cursel(ListDir),1) -> sDirNy
+	
+	fv_FTP_All(sDirOld&sDirNy)
+
+	

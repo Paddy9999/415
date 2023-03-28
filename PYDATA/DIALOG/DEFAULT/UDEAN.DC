@@ -1,0 +1,30 @@
+>BY KR
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM win1 ROWS 14 SIZE 153 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+D  30000   34   22   13  258 -	P{	-	edEditText	-	""
+B3 30001   10   22   15   50 -	CQP	-	pbCommand1	-	"TEST Kod 1"
+D  30002   70   25   13  107 -	P{	-	edEdit02	-	""
+D  30003   70  138   13   60 -	P{	-	edEdit15	-	""
+D  30004   70  211   13   60 -	P{	-	edEdit37	-	""
+D  30005  126   25   13  159 -	P{	-	edEdit00	-	""
+D  30006  126  194   13   60 -	P{	-	edEdit10	-	""
+T  30007   58   25   11   69 -	p	-	txText1	-	"02 EAN 14 Art kod"
+T  30008   58  138   11   69 -	p	-	txText2	-	"15 Datum"
+T  30009   58  211   11   69 -	p	-	txText3	-	"37 Case/Pallet"
+T  30010  112   25   11   69 -	p	-	txText4	-	"00 SSCC"
+T  30011  112  194   11   69 -	p	-	txText5	-	"10 Batch nummer"
+B3 30012   10   78   15   50 -	CQP	-	pbCommand2	-	"TEST Kod 2"
+B3 30013   10  228   15   50 -	CQP	-	pbCommand3	-	"Kör"
+
+>FUNCKEYS ROWS 0
+#Id	key
+
+

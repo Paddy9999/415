@@ -1,0 +1,383 @@
+function qmain
+begin
+þþ000:000010int igDSLu
+þþ000:000011str sgLu
+þþ000:000012str sgPath
+þþ000:000013bool bgPTC
+þþ000:000014
+þþ000:000015
+þþ000:000016#include ds.i
+þþ000:000017
+þþ002:000001*define incr($1) = ($1+1->$1)
+þþ002:000002*define decr($1) = ($1-1->$1)
+þþ002:000003
+þþ002:000004*define PTC_LOG_DETAILED	 	= 1
+þþ002:000005*define PTC_LOG_STD 				= 3
+þþ002:000006*define PTC_LOG_ERROR 			= 7
+þþ002:000007
+þþ002:000008
+þþ002:000009//defines för snabbsök
+þþ002:000010*define EDFIND_SUP			= "L"	//Leverantörer
+þþ002:000011*define EDFIND_CUST			= "K"	//Kunder
+þþ002:000012*define EDFIND_COMPANY	 	= "F" //Företag - både kunder och leverantörer
+þþ002:000013*define EDFIND_RENT			= "H"	//Artiklar Uthyrning
+þþ002:000014
+þþ002:000015*define EDFINDSKIP			= false->C0	//Posten tas inte med. Kan användas i efX_evaluate
+þþ002:000016
+þþ002:000017
+þþ002:000018//defines för lsDsCheckDig,lbDsCheckDig,lsDsCheckDigAdd
+þþ002:000019*define CHECKDIG_10MODUL21 = 1
+þþ002:000020*define CHECKDIG_10MODUL31 = 2
+þþ002:000021*define CHECKDIG_10MODUL49 = 3
+þþ002:000022*define CHECKDIG_11MODUL   = 4
+þþ002:000023*define CHECKDIG_36MODUL   = 5
+þþ002:000024
+þþ002:000025
+þþ002:000026// Menyval för dropdownmenyer
+þþ002:000027
+þþ002:000028*define BRC_PROJ_CHANGE_CUST			= 1410
+þþ002:000029*define BRC_PROJ_CHANGE_TYPE			= 1411
+þþ002:000030*define BRC_PROJ_CHANGE_WEEK			= 1412
+þþ002:000031*define BRC_PROJ_DIARY					= 1413
+þþ002:000032*define BRC_PROJ_DELIVPLAN				= 1414
+þþ002:000033*define BRC_PROJ_REPLACE_DELIV		= 1415
+þþ002:000034*define BRC_PROJ_CHANGE_CURR			= 1416
+þþ002:000035
+þþ002:000036*define BRC_PROJ_CHANGE_STATUS		= 1420
+þþ002:000037*define BRC_PROJ_EXT_SERVICE			= 1421
+þþ002:000038*define BRC_PROJ_READY_REPORT			= 1422
+þþ002:000039*define BRC_PROJ_COST_PROPOSAL		= 1423
+þþ002:000040*define BRC_PROJ_METER_READING		= 1424
+þþ002:000041*define BRC_PROJ_DIVIDE_PAYMENT		= 1425
+þþ002:000042*define BRC_PROJ_DELIVER_ORDER		= 1426
+þþ002:000043
+þþ002:000044*define BRC_PROJ_NEW_ACTIVITY			= 1427
+þþ002:000045*define BRC_PROJ_RESOURCE_EDIT		= 1428
+þþ002:000046*define BRC_PROJ_ANNOUNCEMENT			= 1429
+þþ002:000047
+þþ002:000048*define BRC_PROJ_HOUSEWORK				= 1430
+þþ002:000049*define BRC_PROJ_CALCULATE				= 1431
+þþ002:000050*define BRC_PROJ_SPECIALRULES			= 1432
+þþ002:000051*define BRC_PROJ_KONFIGURATOR			= 1433
+þþ002:000052*define BRC_PROJ_REQUEST				= 1434
+þþ002:000053*define BRC_PROJ_BONUSCARD				= 1435
+þþ002:000054*define BRC_PROJ_ACONTOPLAN			= 1436
+þþ002:000055*define BRC_PROJ_WORD					= 1437
+þþ002:000056
+þþ002:000057*define BRC_PROJ_ACTIVITYCENTRAL	= 1438
+þþ002:000058*define BRC_PROJ_PRINT_INVOICE	= 1439
+þþ002:000059*define BRC_PROJ_PRINT_FORMS		= 1440
+þþ002:000060*define BRC_PROJ_ACONTODEDUCTION	= 1441
+þþ002:000061
+þþ002:000062*define BRC_PROJ_PRINT_OERK		= 1442
+þþ002:000063*define BRC_PROJ_SHOW_HEAD			= 1443
+þþ002:000064*define BRC_PROJ_HEAD_TEXT			= 1444
+þþ002:000065*define BRC_PROJ_GET_OFFER			= 1445
+þþ002:000066
+þþ002:000067*define BRC_PROJ_PAY					= 1446
+þþ002:000068*define BRC_PROJ_DEBIT				= 1447
+þþ002:000069*define BRC_PROJ_DEPOSIT			= 1448
+þþ002:000070*define BRC_PROJ_DELIVER			= 1449
+þþ002:000071*define BRC_PROJ_RETURN				= 1450
+þþ002:000072
+þþ002:000073
+þþ002:000074// Verktygsknappar för menyrad
+þþ002:000075*define MC_HELP					= 1007
+þþ002:000076*define MC_DESK					= 1010
+þþ002:000077*define MC_ACTIVITY			= 1015
+þþ002:000078*define MC_MESSAGE			= 1016
+þþ002:000079
+þþ002:000080*define MC_HOTCEFI			= 1020
+þþ002:000081*define MC_HOTCELA			= 1021
+þþ002:000082*define MC_HOTCELI			= 1022
+þþ002:000083*define MC_HOTCEPO			= 1023
+þþ002:000084*define MC_HOTCEPE			= 1024
+þþ002:000085*define MC_HOTCEKO			= 1025
+þþ002:000086*define MC_HOTCEMP			= 1026
+þþ002:000087*define MC_HOTCEMT			= 1027
+þþ002:000088*define MC_HOTCEMR			= 1028
+þþ002:000089*define MC_HOTCELF			= 1029
+þþ002:000090*define MC_HOTCEPG			= 1030
+þþ002:000091*define MC_HOTCEIK			= 1031
+þþ002:000092*define MC_HOTCEIN			= 1032
+þþ002:000093*define MC_HOTCESE			= 1033
+þþ002:000094
+þþ002:000095*define MC_PIN					= 2001
+þþ002:000096*define MC_FIRST				= 2002
+þþ002:000097*define MC_LAST					= 2003
+þþ002:000098*define MC_PREVIOUS			= 2004
+þþ002:000099*define MC_NEXT					= 2005
+þþ002:000100*define MC_NOTEPAD			= 2007
+þþ002:000101*define MC_INFO					= 2008
+þþ002:000102*define MC_SAVE					= 2009
+þþ002:000103*define MC_ADDFAVORITE	= 2010
+þþ002:000104*define MC_DELETE				= 2011
+þþ002:000105*define MC_PREVIEW			= 2012
+þþ002:000106*define MC_PRINT				= 2013
+þþ002:000107*define MC_DELFAVORITE	= 2014
+þþ002:000108*define MC_DELQUEUE			= 2015
+þþ002:000109*define MC_ADDLISTGROUP	= 2016
+þþ002:000110*define MC_DELLISTGROUP	= 2017
+þþ002:000111*define MC_MACRO				= 2018
+þþ002:000112*define MC_GRAPH				= 2022
+þþ002:000113*define MC_ADDDESK			= 2023
+þþ002:000114*define MC_WWW					= 2024
+þþ002:000115*define MC_MAP					= 2025
+þþ002:000116*define MC_OPEN					= 2026
+þþ002:000117*define MC_NEW					= 2027
+þþ002:000118*define MC_FASTSEEK			= 2028
+þþ002:000119*define MC_RELOAD				= 2029
+þþ002:000120*define MC_FASTSEEK2		= 2030
+þþ002:000121*define MC_TEXTVIEW			= 2031
+þþ002:000122*define MC_TIMER				= 2032
+þþ002:000123*define MC_PRINT_LABEL	= 2034
+þþ002:000124*define MC_UP						= 2036
+þþ002:000125*define MC_DOWN					= 2037
+þþ002:000126
+þþ002:000127//För DSACALL
+þþ002:000128*define DSC_FUNC_QUERY		= 1000
+þþ002:000129*define DSC_FUNC_ROWS_INIT	= 1001
+þþ002:000130*define DSC_FUNC_ROWS_EXIT	= 1002
+þþ002:000131
+þþ002:000132
+þþ002:000133//lbDSFindFirstEx, lbDSFindLastEx
+þþ002:000134//Exempel: ex(#1234,>,"abc") ex_and ex(#5678,=,sBanana)
+þþ002:000135*define ex_and			= &"&&"&
+þþ002:000136*define ex_or			= &"||"&
+þþ002:000137*define ex($1,$2,$3) = "$1$2'"&$3&"'"
+þþ002:000138
+þþ002:000139//Hantering kring listkontroller
+þþ002:000140*define LC_RELOAD					= 1	//Listkontrollen behöver laddas om
+þþ002:000141*define LC_RESET					= 2	//Återställ listkontroll
+þþ002:000142*define LC_RELOADABLE			= "R"	//Dialogen hanterar omladdning av listkontroll efter anpassning
+þþ002:000143
+þþ002:000144//Central koder
+þþ002:000145*define CENTRAL_CUSTOMER	= "KK"
+þþ002:000146*define CENTRAL_ARTICLE 	= "AK"
+þþ002:000147*define CENTRAL_SUPPLIER	= "LK"
+þþ002:000148*define CENTRAL_PROJECT		= "PO"
+þþ002:000149*define CENTRAL_PERSONNEL	= "PK"
+þþ002:000150*define CENTRAL_CONTACT		= "ZK"
+þþ002:000151*define CENTRAL_INVOICE		= "LF"
+þþ002:000152*define CENTRAL_GROUP		= "PG"
+þþ002:000153*define CENTRAL_PURCHASE	= "IK"
+þþ002:000154*define CENTRAL_PROSPECT	= "KP"
+þþ002:000155*define CENTRAL_CRM			= "CR"
+þþ002:000156*define CENTRAL_PRODUCT		= "MP"
+þþ002:000157*define CENTRAL_MANUFACT	= "MT"
+þþ002:000158*define CENTRAL_RESOURCE	= "MR"
+þþ002:000159*define CENTRAL_STORE		= "BU"
+þþ002:000160*define CENTRAL_SERIE		= "GA"
+þþ002:000161*define CENTRAL_INVENTORY	= "IV"
+þþ002:000162*define CENTRAL_ACCOUNT		= "RD"
+þþ002:000163
+þþ002:000164// Ursprung projekt/order (#3009)
+þþ002:000165*define U_ACONTO				= "A"
+þþ002:000166*define U_CONTRACT				= "C"
+þþ002:000167*define U_PROJOFF				= "E"
+þþ002:000168*define U_BASIS					= "F"
+þþ002:000169*define U_RENTAL				= "H"
+þþ002:000170*define U_INTERNAL				= "I"
+þþ002:000171*define U_OUTTAKE				= "L"
+þþ002:000172*define U_MODEL					= "M"
+þþ002:000173*define U_OFFER					= "O"
+þþ002:000174*define U_PROJECT				= "P"
+þþ002:000175*define U_KASSA           		= "Q"
+þþ002:000176*define U_SERVOFF				= "R"	//Serviceorder offert
+þþ002:000177*define U_SERVICE				= "S"	//Serviceorder
+þþ002:000178*define U_ORDER					= "U"
+þþ002:000179*define U_SERVMOD				= "V"	//Serviceorder mall
+þþ002:000180
+þþ002:000181//TYPE - Används för att testa om det är order, offert, mall etc
+þþ002:000182*define TYPE_ORDER			= #3009 = U_ORDER
+þþ002:000183*define TYPE_OFFER			= #3009 = U_OFFER
+þþ002:000184*define TYPE_PROJOFFER		= #3009 = U_PROJOFF
+þþ002:000185*define TYPE_SERVOFFER		= #3009 = U_SERVOFF
+þþ002:000186*define TYPE_ANYOFFER		= U_OFFER&U_SERVOFF&U_PROJOFF ? #3009
+þþ002:000187*define TYPE_MODEL			= #3009 = U_MODEL
+þþ002:000188*define TYPE_PROJECT		= U_PROJECT&U_INTERNAL ? #3009
+þþ002:000189*define TYPE_SERVICE		= #3009 = U_SERVICE
+þþ002:000190*define TYPE_BASIS			= #3009 = U_BASIS
+þþ002:000191*define TYPE_RENTORDER		= #3009 = U_RENTAL
+þþ002:000192*define TYPE_KASSA			= #3009 = U_KASSA
+þþ002:000193*define TYPE_INTERNAL		= #3009 = U_INTERNAL
+þþ002:000194*define TYPE_CONTRACT		= #3009 = U_CONTRACT
+þþ002:000195*define TYPE_OUTTAKE		= #3009 = U_OUTTAKE
+þþ000:000018#uselib dsdbase
+þþ000:000019#uselib dsstd
+þþ000:000020#uselib dsptc
+þþ000:000021
+þþ000:000022
+þþ000:000023
+þþ000:000024//-------------------------------------------------------------------------------------------------------------
+þþ000:000025//Funktion som loopar igenom register och letar upp vilka fältnummer som finns.
+þþ000:000026function fvFields(str sTabelSort)
+þþ000:000027begin
+þþ000:000028
+þþ000:000029int iField
+þþ000:000030
+þþ000:0000310->iField
+þþ000:000032while iField<=99999	//Standard fält
+þþ000:000033ifl d_in_lu(igDSLu, iField)=igDSLu
+þþ000:000034error(igDSLu)
+þþ000:000035lbDSTable_Append(189)
+þþ000:000036d_put(189,6901,iField)
+þþ000:000037endifl
+þþ000:000038iField+1->iField
+þþ000:000039wend
+þþ000:000040
+þþ000:000041end
+þþ000:000042//-------------------------------------------------------------------------------------------------------------
+þþ000:000043//funktion som skapar fil och fyller dem ed data från register
+þþ000:000044function fvCreate_File(str sTabelSort)
+þþ000:000045begin
+þþ000:000046str sLine(9999)
+þþ000:000047str sData
+þþ000:000048
+þþ000:000049
+þþ000:000050ifl f_access(sgPath&#806%S%T&"-"&sgLu&'.CSV',0)=0	//Om fil finns raderas den
+þþ000:000051f_delete(sgPath&#806%S%T&"-"&sgLu&'.CSV')
+þþ000:000052endifl
+þþ000:000053
+þþ000:000054f_open(sgPath&#806%S%T&"-"&sgLu&'.CSV',200,'c','')	//Skapa fil
+þþ000:000055
+þþ000:000056ifl sTabelSort="I" // Index register
+þþ000:000057lbDSFind_F(igDSLu)
+þþ000:000058//Benämningar
+þþ000:000059''->sLine
+þþ000:000060lbDST_Find_F(189)
+þþ000:000061d_get(189,6901)%S%T&"_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine
+þþ000:000062lbDST_Find_N(189)
+þþ000:000063while not Lu_eof(189)
+þþ000:000064sLine&';' & d_get(189,6901)%S%T & "_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine // Benämning inkl #fältnummer_Benämning
+þþ000:000065//sLine&';'&d_label(igDSLu,d_get(189,6901))%S%T->sLine // Liten benämning
+þþ000:000066lbDST_Find_N(189)
+þþ000:000067wend
+þþ000:000068f_write_line(200,sLine)	//Skriver till fil
+þþ000:000069
+þþ000:000070//Loopa igenom data
+þþ000:000071while not lu_eof(igDSLu)
+þþ000:000072''->sLine
+þþ000:000073lbDST_Find_F(189)			//Loopar igenom fält i register. Obs, första fältet skrivs direkt för att få rätt på ;
+þþ000:000074d_get(igDSLu,d_get(189,6901))%S%T->sLine
+þþ000:000075lbDST_Find_N(189)
+þþ000:000076while not Lu_eof(189)
+þþ000:000077d_get(igDSLu,d_get(189,6901))%S%T->sData
+þþ000:000078//if d_get(189,6901)%S%T='3161':Left(sData,4)->sData		//Justering av information i detta fal ta bort dag ur levvecka
+þþ000:000079sLine&';'&sData->sLine
+þþ000:000080lbDST_Find_N(189)
+þþ000:000081wend
+þþ000:000082f_write_line(200,sLine)	//Skriver till fil
+þþ000:000083lbDSFind_N(igDSLu)
+þþ000:000084wend
+þþ000:000085else // Tabell
+þþ000:000086lbDST_Find_F(igDSLu)
+þþ000:000087//Benämningar
+þþ000:000088''->sLine
+þþ000:000089lbDST_Find_F(189)
+þþ000:000090d_get(189,6901)%S%T&"_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine
+þþ000:000091lbDST_Find_N(189)
+þþ000:000092while not Lu_eof(189)
+þþ000:000093sLine&';' & d_get(189,6901)%S%T & "_" & d_label(igDSLu,d_get(189,6901))%S%T->sLine // Benämning inkl #fältnummer_Benämning
+þþ000:000094//sLine&';'&d_label(igDSLu,d_get(189,6901))%S%T->sLine // Liten benämning
+þþ000:000095lbDST_Find_N(189)
+þþ000:000096wend
+þþ000:000097f_write_line(200,sLine)	//Skriver till fil
+þþ000:000098
+þþ000:000099//Loopa igenom data
+þþ000:000100while not lu_eof(igDSLu)
+þþ000:000101''->sLine
+þþ000:000102lbDST_Find_F(189)			//Loopar igenom fält i register. Obs, första fältet skrivs direkt för att få rätt på ;
+þþ000:000103d_get(igDSLu,d_get(189,6901))%S%T->sLine
+þþ000:000104lbDST_Find_N(189)
+þþ000:000105while not Lu_eof(189)
+þþ000:000106d_get(igDSLu,d_get(189,6901))%S%T->sData
+þþ000:000107//if d_get(189,6901)%S%T='3161':Left(sData,4)->sData		//Justering av information i detta fal ta bort dag ur levvecka
+þþ000:000108sLine&';'&sData->sLine
+þþ000:000109lbDST_Find_N(189)
+þþ000:000110wend
+þþ000:000111f_write_line(200,sLine)	//Skriver till fil
+þþ000:000112lbDST_Find_N(igDSLu)
+þþ000:000113wend
+þþ000:000114endifl
+þþ000:000115
+þþ000:000116
+þþ000:000117f_close(200)	//Stäng fil
+þþ000:000118end
+þþ000:000119//-------------------------------------------------------------------------------------------------------------
+þþ000:000120function fvStart()
+þþ000:000121begin
+þþ000:000122
+þþ000:000123int iReg
+þþ000:000124
+þþ000:000125liDSTableCreateStart(189)
+þþ000:000126lbDSTableCreateField(189,6901,"A",5,"Fältnummer")
+þþ000:000127lvDSTableCreateEnd(189)
+þþ000:000128
+þþ000:000129getprofilestring('EXPORT','PATH','UDD:LUPTC.ini')->sgPath
+þþ000:000130if bgPTC lvDSPTCLog( 1               ,"Path: "&sgPath,"","","")
+þþ000:000131
+þþ000:0001321->iReg	//Loopar igenom ini fil för att hitta register
+þþ000:000133
+þþ000:000134while getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')%S%T<>''
+þþ000:000135getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')->sgLu
+þþ000:000136
+þþ000:000137error(sgLu & " " & lsDSRegisterType(sgLu)& " " & lsDSRegisterLabel(sgLu)  & " " &lsDSRegisterName(sgLu))
+þþ000:000138
+þþ000:000139if bgPTC lvDSPTCLog( 1               ,iReg&" LU_"&sgLu,"","","")
+þþ000:000140if bgPTC lbDSPTCPing()
+þþ000:000141
+þþ000:000142
+þþ000:000143ifl lsDSRegisterType(sgLu)= "I" // index register
+þþ000:000144error("1")
+þþ000:000145lidsloadlu(sgLu,'I')->igDSLu
+þþ000:000146lbDSLu_T_Scratch(189)
+þþ000:000147fvFields("I")
+þþ000:000148error("2")
+þþ000:000149fvCreate_File("I")
+þþ000:000150error("3")
+þþ000:000151lbDSLu_Unload(igDSLu)
+þþ000:000152else
+þþ000:000153lidsloadlu(sgLu,'T')->igDSLu // Tabeller
+þþ000:000154lbDSLu_T_Scratch(189)
+þþ000:000155fvFields("T")
+þþ000:000156fvCreate_File("T")
+þþ000:000157lbDSLu_Unload(igDSLu)
+þþ000:000158endifl
+þþ000:0001591+iReg->iReg
+þþ000:000160wend
+þþ000:000161
+þþ000:000162end
+þþ000:000163//-------------------------------------------------------------------------------------------------------------
+þþ000:000164@pbCommand1_click
+þþ000:000165false->bgPTC
+þþ000:000166fvStart()
+þþ000:000167error('Klar')
+þþ000:000168
+þþ000:000169@pbCommand2_click
+þþ000:000170// För att skapa test fil
+þþ000:000171ifl msgbox("Skapa Demo Fil. Gammal fil skrivs över", "Pyramid", 36) = 6
+þþ000:000172ifl f_access('UDD:LUPTC.ini',0)=0	//Om fil finns raderas den
+þþ000:000173f_delete('UDD:LUPTC.ini')
+þþ000:000174endifl
+þþ000:000175writeprofilestring('EXPORT', 'PATH', 'C:\TMP\', 'UDD:LUPTC.ini')
+þþ000:000176writeprofilestring('Reg'&'1', 'Namn', 'PULAGER', 'UDD:LUPTC.ini')
+þþ000:000177
+þþ000:000178
+þþ000:000179endifl
+þþ000:000180
+þþ000:000181@PtcExecute
+þþ000:000182true->bgPTC
+þþ000:000183lvDSPTCLog( 3          ,"Start","","","")
+þþ000:000184fvStart()
+þþ000:000185lvDSPTCLog( 3          ,"Klart","","","")
+þþ000:000186event_set(99)
+þþ000:000187
+þþ000:000188
+þþ000:000189@pbCommand3_click
+þþ000:000190shell_execute("notepad.exe",path_name('UDD:')&'LUPTC.ini', "", 5)
+
+subquit
+
+exitfunc
+end 

@@ -1,0 +1,16 @@
+// Programnamn: (namn) Datum: (datum)
+// Utvecklare: (namn) Företag: (namn)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//
+
+@global
+
+
+@SemailSendBefore()
+	ifl edSubject ? "Z-dagrapport"
+		ww_textset(edTo,"patrick.andersson@krsystem.se")
+	endifl

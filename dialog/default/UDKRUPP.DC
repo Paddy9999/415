@@ -1,0 +1,92 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>COLOR ROWS 1
+#id color	comment
+H   0xeedab2   	""
+
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   299   546 SBW	-	"-"	"-"	  0	"KR System Butiken"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM MAIN ROWS 12 SIZE 332 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3   124  313  389   15   50 -	CTHPswz	-	pbOk	-	"Ok"
+B3 24002  313  444   15   50 -	CTHPswz	-	pbCancel	-	"Avbryt"
+WW   126   50  268  220  278 -	PWz	-	win1	-	""
+T  30020    6  250   21  235 -	Rpz	C1F8	txHeader1	-	"Servicedatum"
+T  30021   28  370   11  113 -	Rpz	C1F4	txHeader2	-	"Produktkod SER"
+BM 30022    4  498   40   40 -	STpz	-	bmProductImage	-	"E:\PBS\Stage\KRToolBox\BMP\krefh_icon.png"
+WW 30023   50   10  221  252 -	PWZ	D9	Win30025	-	""
+WW 30024    4    4   32  144 -	P	-	Win30178	-	""
+T  30025   24  150   11  106 -	p	CBF3	txHardError	-	"Butiken bör ligga endast i UAD:"
+T  30043    4  150   16   86 -	p	CBF3	txSelfUpdateInfo	-	"Hem för butiken - självuppdateras inte!"
+T  30045   38   14   12  400 -	p	C5F5	txWelcomeMessage	-	""
+XB 30047  272   10   10  208 -	RDPj	FD	xbGDPR	-	"Diagnostiseringsinformation skickas till KR System för supportsyften"
+
+>FORM win1 ROWS 3 SIZE 3 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW 30003   64   10   15  262 -	P	-	Win30003	-	""
+WW 30006   80    4  135  268 -	PW	-	Win30006	-	""
+WW 30014    2    4   60  268 -	P	DH	Win30014	-	""
+
+>FORM Win30003 ROWS 1 SIZE 259 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3 29001    2   82    0    0 -	QHpflF	-	pbCmd	-	"h_add.png,Installera EFH"
+
+>FORM Win30006 ROWS 1 SIZE 71 "Win30006"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+EM 30026    0    2  134  262 -	POWå.	-	edProductDesc	-	""
+
+>FORM Win30014 ROWS 8 SIZE 296 "Win30014"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30027    6   18   10  140 -	p	F3	txLicence	-	"Licens saknas!"
+T  30028   24    6   11  124 -	p	-	txVersion	-	"Version installerad:"
+T  30029   34    6   11  124 -	p	-	txAvailableVersion	-	"Senaste version tillänglig: 2"
+B3 30030   14  138   22  125 -	CQPqfF	F6	pbExecute	-	"t_autopurchase.png,Förfrågan"
+BM 30031    3    4   12   12 -	Tp	-	bmLicence	-	""
+T  30032   44  130   11  134 -	Rp	FD	txPatch	-	"Manuella steg vid installation."
+T  30033    6  142   11  124 -	Rp	FD	txBeta	-	""
+T  30042   44    6   11  124 -	p	-	txProductRequirements	-	"Produktkrav:"
+
+>FORM Win30025 ROWS 3 SIZE 8 "Win30025"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+GR 30040   20    6  194  238 -	PWZ	F4	lcList	-	""
+CB 30041    4   36  100  138 -	P	-	cbFilter	-	""
+T  30048    6    8   10   25 -	p	-	txMenu	-	"Meny:"
+
+>FORM lcList ROWS 6 SIZE 34 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30035    0    0   20   30 -	Hp	-	-	#186.18601	"Kod"
+T  30036    0    0   20  130 -	Hp	-	-	#186.18606	"Namn"
+BM 30034    0    0   20   20 -	CQHp	-	-	#186.18614	"Status"
+T  30037    0    0   20   50 -	Hp	-	-	#186.18608	"Info"
+BM 30038    0    0   20   20 -	CQHp	-	-	#186.18616	"Licens"
+T  30044    0    0   20   20 -	Hp	-	-	#186.18613	"Patch"
+
+>LCFORMAT lcList ROWS 4
+#Id
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+
+
+>FORM Win30178 ROWS 1 SIZE 18 "Win30178"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+BM 30039    0    0   30  138 -	Tp	-	bmLogo	-	"krsystem_logo.png"
+
+>DSCHANGE ROWS 3
+#Id
+124 65536 65544 0 3 0
+24002 65536 65544 0 3 0
+126 805306368 1280 0 15 0
+
+

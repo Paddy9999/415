@@ -1,0 +1,16 @@
+>BY KR
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 4 SIZE 108 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+D  30000   16   44   13  167 -	P	-	edEdit1	-	"C:\TMP\"
+B3 30001  123    8   15  102 -	CQPw|	-	pbCommand1	-	"Visa LUPTC.ini i Notepad"
+T  30002   16    6   11   32 -	p	-	txText1	-	"Sökväg"
+EM 30008   37   12   75  202 -	Pä	-	edEdit2	-	""
+

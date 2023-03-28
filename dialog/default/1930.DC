@@ -1,0 +1,13 @@
+>BY FIBA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM win2 ROWS 1 SIZE 64 "Huvud"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+XB 30000    7  296   10  130 -	RP	-	xbUdkr1930	-	"Autostarta KR System 1930"
+

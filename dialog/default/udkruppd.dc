@@ -1,0 +1,44 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   391   527 SBW	D9	"-"	"-"	  0	"KR System - Produktdokument"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM MAIN ROWS 5 SIZE 51 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3   124    0  378   15   50 -	CTHPswz	-	pbOk	-	"Ok"
+B3 24002    0  438   15   50 -	CTHPfFswz	-	pbCancel	-	"Stäng"
+WW   126    4    4   65  520 -	PsZ	-	win1	-	""
+WW 30033   68    4  330  520 -	PWZ	-	Win30033	-	""
+T  30036   69   10   11  200 -	p	F5	txDocInfo	-	"manual.pdf kunde inte hittas"
+
+>FORM win1 ROWS 2 SIZE 26 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+GR 30002    6    3   54  471 -	PZ	-	lcFiles	-	""
+B3 30038    6  478   54   40 -	CQP6	-	pbDownload	-	"h_download.png,Ladda ner"
+
+>FORM lcFiles ROWS 3 SIZE 27 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30030    0    0   11  150 -	Hp	-	-	#18601	"Namn"
+T  30031    0    0   11   60 -	Hp	-	-	#18602	"Senast ändrad"
+T  30032    0    0   11   60 -	Hp	-	-	#18604	"Storlek"
+
+>FORM Win30033 ROWS 1 SIZE 1 "Win30033"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW 30034    2    4  297  514 -	PWZ	-	CefWindow	-	""
+
+>FORM CefWindow ROWS 0 SIZE 17701
+>DSCHANGE ROWS 3
+#Id
+124 65536 4259848 0 3 0
+24002 16850944 4259848 0 259 0
+126 805306368 520 0 15 0
+
+

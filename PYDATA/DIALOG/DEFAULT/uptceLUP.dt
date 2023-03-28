@@ -1,0 +1,42 @@
+// Programnamn: (namn) Datum: (datum)
+// Utvecklare: (namn) Företag: (namn)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//
+
+
+#uselib DSSTD
+
+
+@global
+*define CRLF 	= chr(13,10)
+
+
+//---------------------------------------------------------------------------------------------
+@edEdit1_lostfocus
+	writeprofilestring('EXPORT','PATH',ww_textget(edEdit1,0)%S%T,'UDD:LUPTC.ini')
+
+
+//---------------------------------------------------------------------------------------------
+@after_enter
+	str sLu
+	int iReg
+	str sReg(10000)
+	
+	1 -> iReg
+	""-> sReg
+	ww_textset(edEdit1,getprofilestring('EXPORT','PATH','UDD:LUPTC.ini'))
+
+	while getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')%S%T<>''
+		getprofilestring('Reg'&iReg,'Namn','UDD:LUPTC.ini')->sLu
+		sReg & sLu & CRLF	-> sReg
+		1+iReg->iReg
+	wend
+	ww_textset(edEdit2,sReg)
+
+
+@pbCommand1_click
+	shell_execute("notepad.exe",path_name('UDD:')&'LUPTC.ini', "", 5)

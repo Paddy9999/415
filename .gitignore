@@ -1,0 +1,55 @@
+#ignore all
+*
+#include general
+!.gitignore
+!**/README.md
+
+#include dialog
+!/dialog/
+/dialog/*
+!/dialog/default/
+!/dialog/default/*
+/dialog/default/ds*.dc
+/dialog/default/ds*.dt
+!/dialog/group/
+!/dialog/group/*
+!/dialog/user/
+!/dialog/user/*
+
+#include prog
+!/prog/
+/prog/*
+!/prog/ul*.b
+!/prog/ud*.d
+!/prog/uptcd*.d
+!/prog/uptce*.d
+
+#include studio
+!/studio/
+/studio/*
+!/studio/lib/
+!/studio/lib/*
+/studio/lib/ds*.h
+
+#include
+!/PYDATA
+/PYDATA/*
+!/PYDATA/dialog/
+/PYDATA/dialog/*
+!/PYDATA/dialog/default/
+!/PYDATA/dialog/default/*
+!/PYDATA/dialog/group/
+!/PYDATA/dialog/group/*
+!/PYDATA/dialog/user/
+!/PYDATA/dialog/user/*
+
+#ignore general
+**/*.txt
+**/*.log
+**/*.cod
+**/*.cob
+**/*.wrn
+**/*.dtx
+**/*.csv
+**/*.zip
+

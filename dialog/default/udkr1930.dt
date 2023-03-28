@@ -1,0 +1,39 @@
+// 	KR-System AB
+// 	------------------------------------------------------------------------------------------------------------------
+*rem
+	Dialog:					
+	Pyramid ÅF:				KR-SYSTEM
+	Utvecklare:				FIBA/FRLA
+	Skapad datum:			Tue 21-06-29
+	
+	Beskrivning:			Listar anpassningar
+	
+
+	
+	Ändringslogg:
+	Händelse/funktion				Datum/tid			Sign	Beskrivning
+	Buggfix							Wed 21-10-06		FRLA	Egna värden
+	Fler dialoger som listas	Wed 21-10-06		FRLA	UR och UIS
+	Fler dialoger som listas	Tue 22-01-18		FRLA	Lagt till dsdoc i listan överst
+	-									Sun 22-01-30 		FIBA	Kanske skrev om hela dialogen :/
+										Mon 22-11-28		FIBA	Alt+0 för programfältet
+										Mon 22-11-28		FIBA	Enter för att starta (stänger ej aktuell dialog)
+										Mon 22-11-28		FIBA	Efter ifylld dialog som inte finns i listan, får man frågan om att starta den
+										Wed 22-11-30		GUST	Spara sorteringsordning i listkontrollen
+
+
+//	------------------------------------------------------------------------------------------------------------------
+*endrem
+
+//
+//#KRPROD
+//Program från KR System AB.
+//Mer information om produkten på www.krsystem.se. 
+//För frågor, skicka e-post till produkter@krsystem.se
+//
+//Produktkrav/beroende av övriga produkter från KR System (En rad per krav)
+//#REQ-KR:ST
+//
+//
+//HIDESOURCE
+//: 

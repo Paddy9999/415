@@ -1,0 +1,148 @@
+>BY GUST
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   335   564 SBW	-	"-"	"-"	  0	"KR System 1930"
+
+>STACK ROWS 200  SIZE 5000
+
+>FORM MAIN ROWS 7 SIZE 107 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+TB   121   34  101  284  458 -	PWZ	-	tab1	-	""
+WW   126    5    5  314   90 -	piW	DH	win1	-	""
+B3 30030   18  546   11   11 -	CQpfFiz	-	pbInfo	-	"h_edit.png,"
+T    129    2  352   16  205 -	Rpz	C1FK	txHeader2	-	"Genvägar"
+T  30020   18  338   11  204 -	Rpz	F4	txInfo	-	""
+T  30019   22  104   11  246 -	pZ	F4	txProgramGroup	-	"Pyramid standard"
+T    128    0  103   21  246 -	pZ	C1F8	txHeader1	-	"DSDOC - Dokumentera anpassningar"
+
+>TABORDER MAIN ROWS 4
+#Id
+121
+126
+30030
+24002
+
+
+>FORM tab1 ROWS 1 SIZE 2 "tab1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW   122   11    1  271  456 -	HPWZ	-	win7	-	""
+
+>FORM win7 ROWS 1 SIZE 4 "Flik 1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW    95   16    0  253  452 -	PWZ	-	win10	-	""
+
+>FORM win10 ROWS 2 SIZE 16 "Sektioner"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+WW   123    0    0  124  450 -	HPZ	-	win8	-	""
+WW 30002   88    0   53  442 -	PZ:	-	Win30002	-	"Inargument|0"
+
+>FORM win8 ROWS 1 SIZE 1 "Sektion 1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+GR 30004    0    5  115  445 -	PWZ	-	lcDialogs	-	""
+
+>FORM win1 ROWS 5 SIZE 64 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+D  30006   14    4   13   82 -	P{	-	edProgram	-	"dsdoc.d"
+B3 30032  297   92   15   50 -	CQpi	-	pbClose	-	"Stäng"
+XB 30033  302    3   10   85 -	Rpi	-	xbUdkr1930	-	"Använd KR System 1930"
+T  30005    4    4   10   80 -	p	F3	txText1	-	"Program (alt+0):"
+WW 30034   26    0   14   90 -	P	-	Win30034	-	""
+
+>TABORDER win1 ROWS 4
+#Id
+127
+30006
+30032
+30033
+
+
+>FORM Win30002 ROWS 12 SIZE 79 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30008   22   10   11   69 -	p	-	txArg2	-	"Argument 2:"
+T  30009   38   10   11   69 -	p	-	txArg3	-	"Argument 3:"
+T  30010    6  229   11   69 -	p	-	txArg4	-	"Argument 4:"
+T  30011   22  229   11   69 -	p	-	txArg5	-	"Argument 5:"
+T  30017   38  229   11   69 -	p	-	txArg6	-	"Argument 6:"
+D  30015    4   88   13  120 -	P{	-	edArg1	-	""
+T  30007    6   10   11   69 -	p	-	txArg1	-	"Argument 1:"
+D  30013   20   88   13  120 -	P{	-	edArg2	-	""
+D  30014   36   88   13  120 -	P{	-	edArg3	-	""
+D  30012    4  306   13  120 -	P{	-	edArg4	-	""
+D  30016   20  306   13  120 -	P{	-	edArg5	-	""
+D  30018   36  306   13  120 -	P{	-	edArg6	-	""
+
+>TABORDER Win30002 ROWS 7
+#Id
+30015
+30013
+30014
+30012
+30016
+30018
+29001
+
+
+>FORM lcDialogs ROWS 11 SIZE 106 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+BM 30035    0    0    7   10 -	QHp	-	bmFav	#18611	"Fav"
+T  30021    0    0   11   65 -	Hp	-	-	#18609	"Gruppering"
+T  30022    0    0   11   50 -	Hp	-	-	#18601	"Dialog"
+T  30023    0    0   11  150 -	Hp	-	-	#18602	"Namn"
+T  30024    0    0   11   75 -	Hp	-	-	#18603	"Dialogtyp"
+T  30026    0    0   11   40 -	Hp	-	-	#18605	"UAD"
+T  30027    0    0   11   40 -	Hp	-	-	#18606	"UDD"
+T  30028    0    0   11   40 -	Hp	-	-	#18607	"UDU"
+T  30031    0    0   11  150 -	Hp	-	-	#18610	"Info"
+T  30029    0    0   11   80 -	Hp	-	-	#18608	"Datum/tid (*.cod-fil i UDD/UAD)"
+T  30025    0    0   11   80 -	Hp	-	-	#18604	"Datum/tid (*.d-fil)"
+
+>TABORDER lcDialogs ROWS 11
+#Id
+30035
+30021
+30022
+30023
+30024
+30026
+30027
+30028
+30031
+30029
+30025
+
+
+>LCFORMAT lcDialogs ROWS 10
+#Id
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+0 "" 0 0 0 0
+
+
+>FORM Win30034 ROWS 1 SIZE 84 ""
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3 29003    0    0    0    0 -	QHpflF	-	pbCmd	-	"h_checkbox0.png,Enbart fav."
+
+>DSCHANGE ROWS 7
+#Id
+121 805306368 0 0 129 0
+126 805830656 16 0 1032 0
+129 0 0 0 647 0
+128 0 0 0 645 0
+122 805306368 4194304 0 0 0
+95 805306368 8192 0 0 0
+123 805306368 4194304 0 12 0
+
+

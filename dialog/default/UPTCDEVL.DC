@@ -1,0 +1,17 @@
+>BY FIBA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 5 SIZE 54 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+T  30000    6    6   11   69 -	p	-	txText1	-	"Datum från:"
+T  30001   22    6   11   69 -	p	-	txText2	-	"Tid från:"
+D  30002    4   80   13   60 -	P{	-	edDateFrom	-	"230103"
+D  30003   20   80   13   60 -	P{	-	edTimeFrom	-	"00.00"
+B3 30004   43   67   15   50 -	CQP	-	pbCommand1	-	"Kommando"
+

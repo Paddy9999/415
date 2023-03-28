@@ -1,0 +1,20 @@
+// Programnamn: UDEXPORT Datum: 210819
+// Utvecklare: Gustaf Sten Företag: KR System
+// Beskrivning: Exportera alla anpassningar till en zipfil
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//	1.01 221114 GUST Ändrat sökväg för backup. Nu styrs sökvägen av moderdialogen via argv(2)
+//	1.00 210820 GUST Lagt in extra kontroller
+// 1.10 210825 GUST Förändrat anpassningen så den inte tar bort tempmappen
+// 1.30 210826 GUST Lagt till företagsnummer i sökvägen
+// 1.31 210826 GUST Tagit bort / och \ från zipnamn
+// 1.40 210827 GUST Byggt in möjlighet att lägga en kommentar i samband med exporten
+//
+//#KRPROD
+//Program från KR System AB.
+//Mer information om produkten på www.krsystem.se. 
+//För frågor, skicka e-post till produkter@krsystem.se
+//
+//HIDESOURCE
+//: 

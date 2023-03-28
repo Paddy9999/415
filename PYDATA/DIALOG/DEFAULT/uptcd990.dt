@@ -1,0 +1,80 @@
+// Programnamn: (namn) Datum: (datum)
+// Utvecklare: (namn) Företag: (namn)
+// Kund:
+// Beskrivning:
+//
+// Ändringslogg: (Senast överst)
+// 1.00 Datum Sign Kommentar
+//
+
+@global
+
+#include ds.i
+
+str sLoggFile
+
+#uselib dsstd
+#uselib DSDBASE
+#uselib DSPtc
+
+"DAT:/loggFileCount.txt"->sLoggFile
+
+function fvLogg(str sMessage)
+begin
+
+str sLogg
+
+sLoggFile->sLogg
+	
+	ifl f_access(sLogg,0)<>0
+		f_open(sLogg,202,'c','')
+		f_close(202)
+	endifl
+		
+	f_open(sLogg,202,'a','')
+	  f_write_line(202,date(7)&" "&sMessage)
+	f_close(202)
+end
+
+
+
+function fvCountFiles(str sPath)
+begin
+str sFile
+int iHandle,iStatus,iCount
+	
+	0 -> iCount
+	diropen(sPath&'*.*', 32)->iHandle 
+	dirfirst(iHandle)->iStatus	
+
+	while iStatus=0
+		iCount+1 -> iCount
+		dirgetfilename(iHandle, 4)%S%T->sFile
+		fvLogg(iCount & "-" & sFile)
+		dirnext(iHandle)->iStatus
+	wend
+	
+	fvLogg("Totalt antal filer:" & iCount)
+	
+end
+
+
+function start()
+Begin
+	fvCountFiles("D:\Pyramid\415\PYDATA\TESTFiler\")
+end
+
+@PtcExecute
+	fvLogg("PTC Start")
+	Start()
+	fvLogg("PTC Stop")
+	event_set(99)
+
+@pbCommand1_click
+	fvLogg("Manuelt Start")
+	ww_enable(30000,false)
+	ww_textset(30000,"Start!")
+	start()
+	ww_textset(30000,"Klart!")
+	ww_enable(30000,true)
+	fvLogg("Manuelt Stop")

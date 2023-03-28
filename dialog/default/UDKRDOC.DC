@@ -1,0 +1,38 @@
+>BY GUST
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>WINDOW ROWS 1
+#id       x     y    cy    cx sp1	sp2	Bitmap	font	size	caption
+5511     10    10   109   245 S	-	"-"	"-"	  0	"Exportera anpassningar"
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 5 SIZE 105 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+EM 30003   34   14   46  224 -	Pä	-	edEdit1	-	""
+B3    45   90  134   15   50 -	TP	-	pbOk	-	"ok.bmp,&Ok"
+B3 24002   90  188   15   50 -	TP	-	pbCancel	-	"cancel.bmp,Av&bryt"
+GB 30005   22    7   64  235 -	p	-	-	-	"Kommentar"
+T  30004    8   10   11  170 -	p	-	txText2	-	"Vill du spara ner anpassningarna?"
+
+>TABORDER MAIN ROWS 3
+#Id
+30003
+45
+24002
+
+
+>FORM win1 ROWS 1 SIZE 11 "win1"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3 30000   87  106   15   50 -	CQP	-	pbCommand1	-	"Töm mappar"
+
+>DSCHANGE ROWS 2
+#Id
+45 0 0 0 3 0
+24002 0 0 0 3 0
+
+

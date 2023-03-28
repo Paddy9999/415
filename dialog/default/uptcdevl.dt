@@ -1,0 +1,86 @@
+// 	------------------------------------------------------------------------------------------------------------------
+*rem
+	Dialog:					uptcdEVL.d
+	Pyramid ÅF:				KR-SYSTEM
+	Utvecklare:				FIBA	- 	Filip Bahlsten
+	Skapad datum:			Thu 22-01-06 14:23 FIBA
+	
+	Beskrivning:			PTC-tjänst som bearbetar registerändringar (event logger) som skapats enligt
+								inställning för registerloggning.
+								
+								Tjänsten anropar produktunika underdialoger samt en utpekad dialog
+								för kundanpassningar.
+								
+								Produkter:
+								udKrEvlA.d	= KR System WSS - WebService Server API
+								udKrEvlB.d	= KR System SWH - Wb Flex
+								
+								Kundunika anpassningar:
+								udKrEvlC.d	= Kundunika anpassningar
+
+
+
+	
+	Ändringslogg:
+	Händelse/funktion										Datum/tid				Sign	Beskrivning
+																Tue 23-01-03 14:59	FIBA	Justerat så att licens ger OK om licensnummer saknas. 
+	
+
+
+//	------------------------------------------------------------------------------------------------------------------
+*endrem
+
+
+@global
+
+// * LIB *
+#uselib dsstd
+#uselib dsdate
+#uselib dsastd
+#uselib dsdbase
+#uselib DSPTC
+#uselib ulkrst
+#uselib ulkrlicu
+
+// * Include *
+#include dsui.i
+#include ds.i
+#include DSSYSVAR.i
+#include pudblog.inc
+
+// * Defines *
+*define CRLF 								= chr(13,10)
+*define TAB 								= chr(9)
+*define CBSEP								= Chr(173)
+
+
+*define F_PTC_LATEST_START_DATE		= #-4560
+*define D_PTC_LATEST_START_DATE		= -4560
+*define F_PTC_LATEST_START_TIME		= #-4561
+*define D_PTC_LATEST_START_TIME		= -4561
+
+// * Fält från loggningsregister (med 6:a istället för 9:a först)
+*define L_TMP_PUDBLOG_NO				= 6150			//lu för regloggnig
+*define D_TMP_PUDBLOG_LU_NR 			= 6151			//h5  Lu-nr   (Högerjusterat!) 
+*define D_TMP_PUDBLOG_DATUM 			= 6153			//H6  Datum  
+*define D_TMP_PUDBLOG_TIDPUNKT 		= 6154			//A12  Tidpunkt  
+*define D_TMP_PUDBLOG_SIGNATUR 		= 6155			//A4  Signatur  
+*define D_TMP_PUDBLOG_RUTIN 			= 6157			//A4  Rutin  
+*define D_TMP_PUDBLOG_OPERATION 		= 6159			//H1  Operation   (Högerjusterat!) 
+*define D_TMP_PUDBLOG_NYCKEL 			= 6161			//A100  Nyckel  
+*define D_TMP_PUDBLOG_INDEX 			= 6163			//A10  Index 
+
+// * Egen definerade fält * 
+*define D_TMP_PUDBLOG_DNRLIST_CHG 	= 6191			//A250  Datanummerlista (förändrade)
+
+// * Tas ej med *
+//*define D_TMP_PUDBLOG_ANDRINGAR 	= 6165			//A8  Ändringar  
+//*define D_TMP_PUDBLOG_NYCKELFALT 	= 6167			//A8  Nyckelfält 
+
+
+
+
+//KR System AB
+//Kontakt: produkter@krsystem.se
+//HIDESOURCE
+//: 

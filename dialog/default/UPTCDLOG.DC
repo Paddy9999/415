@@ -1,0 +1,18 @@
+>BY FRLA
+
+>COMMENT 
+
+
+>DSVERSION 2.000
+
+>STACK ROWS 100  SIZE 5000
+
+>FORM MAIN ROWS 1 SIZE 26 "100 Main"
+#T   Id    R    C   cy   cx sp	sp1	sp2	Id	Label
+B3    45  123  106   15   61 -	CTP	-	pbOk	-	"Rensa och stäng"
+
+>DSCHANGE ROWS 1
+#Id
+45 0 0 0 262 0
+
+

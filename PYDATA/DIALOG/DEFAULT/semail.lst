@@ -1,0 +1,14 @@
+function qmain
+begin
+þþ000:000011
+þþ000:000012
+þþ000:000013@SemailSendBefore()
+þþ000:000014ifl  24        ? "Z-dagrapport"
+þþ000:000015ww_textset( 13  ,"patrick.andersson@krsystem.se")
+þþ000:000016endifl
+þþ000:000017
+
+subquit
+
+exitfunc
+end

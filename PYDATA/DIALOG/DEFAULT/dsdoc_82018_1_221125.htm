@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="windows-1252">	<!-- HG: Valideringen klagar på allt annat än UTF-8, men fungerar -->
+<title>Anpassningsöversikt</title>
+	<style>
+		body {
+			font-family: arial;
+			font-style: normal;
+		}
+		h1 {font-size: 30px;}
+		h2 {font-size: 25px;}
+		li h3 {display:inline-block}	/* inlagd av HG */
+		hr {
+			height: 2px;
+			background-color: #c2c2c2;
+			border: none;
+		}
+		.table-header {
+			background-color: #0070c0;
+			color: white;
+			height: 60px;
+			font-size: x-large;
+		}
+		/*Tabell*/
+		.tables {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.tables td, .tables th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+		.tables tr:nth-child(even) {background-color: #f2f2f2;}
+		.tables tr:hover {background-color: #ddd;}
+		.tables th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #1D9EFF;
+			color: white;
+		}
+		.table_of_content_container {
+			background-color: #f9f9f9;
+			border: 1px solid #aaa;
+			display: table;
+			font-size: 95%;
+			padding: 20px;
+			width: auto;
+		}
+		.table_of_content_container li, .table_of_content_container ul, .table_of_content_container ul li {
+			list-style: outside decimal none !important;
+			margin-bottom:-10px;
+		}
+  </style>
+</head>
+<body>
+<h2>Översikt anpassningar DEMO - PYDATA</h2>Tidpunkt: 2022-11-25 13.14.23
+<div class="table_of_content_container"><h2>Innehåll</h2><ul><li><a href="#Grundinformation"><h3>Grundinformation</h3></a></li>
+<li><a href="#Programöversikt"><h3>Programöversikt</h3></a></li>
+<li><a href="#Registeröversikt"><h3>Registeröversikt</h3></a></li>
+<li><a href="#Registerspecifikationer"><h3>Registerspecifikationer</h3></a></li>
+<li><a href="#Registerspecifikationer:_Anpassade_Standardregister"><h3>Registerspecifikationer: Anpassade Standardregister</h3></a></li>
+<li><a href="#Registerspecifikationer:_Egna_register"><h3>Registerspecifikationer: Egna register</h3></a></li>
+<li><a href="#Användartabeller"><h3>Användartabeller</h3></a></li>
+<li><a href="#Egna_rapporter"><h3>Egna rapporter</h3></a></li>
+<li><a href="#Egna_PTC-uppdrag"><h3>Egna PTC-uppdrag</h3></a></li>
+<li><a href="#Programdetaljer"><h3>Programdetaljer</h3></a></li>
+</ul></div>
+<br /><hr><br /><br />
+
+<div class="table-header" id="Grundinformation">Grundinformation</div>
+<table class="tables">
+<tr><th>Avser</th><th>Benämning</th></tr>
+<tr><td>Usernumber</td><td> 82018</td></tr>
+<tr><td>Company</td><td>*Demo* Pyramid 4.15A                                                            </td></tr>
+<tr><td>Version,Servicepack</td><td>4.15A04E       ,04E  </td></tr>
+<tr><td>Modules installed</td><td>1,2,4,6,y,o,B,3,5,9,:,-,a,c,D,H,F,G,I,K,M,P,Q,S,T,V,Y,E,L,R,!,f,+,x,p,u,e,k,d,h,s,n,<,J,X,N,j,Z                                                       </td></tr>
+<tr><td>System design 2</td><td>I-1,H-1,K-1,C-1                                   </td></tr>
+<tr><td>System design 3</td><td>x2,KCL,c0,EOK,PX,XWD,XWS,XPH                      </td></tr>
+<tr><td>System design 4</td><td>PLAG:3,PORD:3,BE:3,MARB:3,PMPS:3,PPW:3                                                              </td></tr>
+<tr><td>DAT:</td><td>D:\PYRAMID\415\PYDATA\</td></tr>
+</table><br /><hr><br /><br />
+
+<div class="table-header" id="Programöversikt">Programöversikt</div>
+<table class="tables">
+<tr><th>Program</th><th>Antal</th><th>Namn</th><th>UAD:</th><th>UDD:</th><th>Grupp</th><th>Signaturer</th><th>Kodnamn</th></tr>
+<tr><td><a href="#PTCSUM2_Infostudio">PTCSUM2</a></td><td>1</td><td>Infostudio</td><td></td><td>UDD</td><td></td><td></td><td>PTCSUM2.cod</td></tr>
+<tr><td><a href="#PTCTICK1_Ticker">PTCTICK1</a></td><td>1</td><td>Ticker</td><td></td><td>UDD</td><td></td><td></td><td>ptctick1.cod</td></tr>
+<tr><td><a href="#SYSINIT_870_Systemuppläggning">SYSINIT</a></td><td>1</td><td>870 Systemuppläggning</td><td></td><td>UDD</td><td></td><td></td><td>sysinit.cod</td></tr>
+<tr><td><a href="#UDKRDOC_Exportera_anpassningar">UDKRDOC</a></td><td>2</td><td>Exportera anpassningar</td><td>UAD</td><td></td><td></td><td></td><td>DSTWOBUT.COD</td></tr>
+<tr><td><a href="#UDKRUPP_KR_System_Butiken">UDKRUPP</a></td><td>2</td><td>KR System Butiken</td><td>UAD</td><td></td><td></td><td></td><td>DSWTWOBU.COD</td></tr>
+<tr><td><a href="#UDKRUPPD_5107_KR_System_Produktdokument">UDKRUPPD</a></td><td>2</td><td>5107 KR System Produktdokument</td><td>UAD</td><td></td><td></td><td></td><td>DSWTWOBU.COD</td></tr>
+<tr><td><a href="#UDTID_Grunddialog">UDTID</a></td><td>1</td><td>Grunddialog</td><td></td><td>UDD</td><td></td><td></td><td>DSWTWOBU.COD</td></tr>
+<tr><td><a href="#ULKRLICU_">ULKRLICU</a></td><td>1</td><td></td><td>LIB</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="#ULKRST_">ULKRST</a></td><td>1</td><td></td><td>LIB</td><td></td><td></td><td></td><td></td></tr>
+<tr><td><a href="#ULKRUPP_">ULKRUPP</a></td><td>1</td><td></td><td>LIB</td><td></td><td></td><td></td><td></td></tr>
+</table><br>
+<br /><hr><br /><br />
+<h2 id=Registeröversikt>Registeröversikt</h2><h3>Anpassade register: Saknas</h3><h3>Egna register: Saknas</h3><br /><hr><br /><br />
+<h2 id=Användartabeller>Användartabeller</h2><h3>Användartabeller: Saknas</h3><br /><hr><br /><br />
+<h2 id=Egna_rapporter>Egna rapporter</h2><h3>Egna rapporter: Saknas</h3><br /><hr><br /><br />
+<h2 id=Egna_PTC-uppdrag>Egna PTC-uppdrag</h2><h3>Egna PTC-uppdrag: Saknas</h3><br /><hr><br /><br />
+<h2 id=Programdetaljer>Programdetaljer</h2><h2 id=PTCSUM2_Infostudio>PTCSUM2 Infostudio</h2>
+<div class="table-header">Filer till PTCSUM2             </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>PTCSUM2.DC</td><td>UDD:</td><td></td><td>2022-04-29 12:48:24:931</td><td>75</td><td>PTCSUM2</td><td></td><td></td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=PTCTICK1_Ticker>PTCTICK1 Ticker</h2>
+<div class="table-header">Filer till PTCTICK1            </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>PTCTICK1.DC</td><td>UDD:</td><td></td><td>2022-04-29 12:41:02:715</td><td>75</td><td>PTCTICK1</td><td></td><td></td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=SYSINIT_870_Systemuppläggning>SYSINIT 870 Systemuppläggning</h2>
+<div class="table-header">Filer till SYSINIT             </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>SYSINIT.DC</td><td>UDD:</td><td></td><td>2022-05-04 10:38:26:713</td><td>76</td><td>SYSINIT</td><td></td><td></td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=UDKRDOC_Exportera_anpassningar>UDKRDOC Exportera anpassningar</h2>
+<div class="table-header">Filer till UDKRDOC             </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>UDKRDOC.DC</td><td>UAD:</td><td></td><td>2022-11-14 13:58:12:000</td><td>888</td><td>UDKRDOC</td><td></td><td></td></tr>
+<tr><td>udkrdoc.dt</td><td>UAD:</td><td></td><td>2022-11-14 16:37:36:000</td><td>805</td><td>UDKRDOC</td><td>19223</td><td>2022-11-14 13:58:12:000</td></tr>
+</table><br>
+<br>
+
+<div class="table-header">Källkodsinfo för UAD:udkrdoc.dt</div>
+<table class="tables">
+<tr><th>Avser</th><th>Innehåll</th></tr>
+<tr><td>Första rad</td><td>// Programnamn: UDEXPORT Datum: 210819</td></tr>
+<tr><td>Utvecklare</td><td>Gustaf Sten Företag: KR System</td></tr>
+<tr><td>Beskrivning</td><td>Exportera alla anpassningar till en zipfil</td></tr>
+<tr><td>Ändringslogg</td><td>// 1.00 Datum Sign Kommentar<br>
+//	1.01 221114 GUST Ändrat sökväg för backup. Nu styrs sökvägen av moderdialogen via argv(2)<br>
+//	1.00 210820 GUST Lagt in extra kontroller<br>
+// 1.10 210825 GUST Förändrat anpassningen så den inte tar bort tempmappen<br>
+// 1.30 210826 GUST Lagt till företagsnummer i sökvägen<br>
+// 1.31 210826 GUST Tagit bort / och \ från zipnamn<br>
+// 1.40 210827 GUST Byggt in möjlighet att lägga en kommentar i samband med exporten</td></tr>
+<tr><td>Libfiler</td><td>-</td></tr>
+<tr><td>Events</td><td>-källkod saknas?-</td></tr>
+</table><br>
+<br /><hr><br /><br />
+<h2 id=UDKRUPP_KR_System_Butiken>UDKRUPP KR System Butiken</h2>
+<div class="table-header">Filer till UDKRUPP             </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>UDKRUPP.DC</td><td>UAD:</td><td></td><td>2022-08-25 14:19:32:000</td><td>3443</td><td>UDKRUPP</td><td></td><td></td></tr>
+<tr><td>udkrupp.dt</td><td>UAD:</td><td></td><td>2022-10-17 14:32:56:000</td><td>670</td><td>UDKRUPP</td><td>126927</td><td>2022-08-25 12:40:20:000</td></tr>
+</table><br>
+<br>
+
+<div class="table-header">Källkodsinfo för UAD:udkrupp.dt</div>
+<table class="tables">
+<tr><th>Avser</th><th>Innehåll</th></tr>
+<tr><td>Första rad</td><td>// ------------------------------------------------------------------------------------------------------------------</td></tr>
+<tr><td>Utvecklare</td><td>FRLA	- 	Fredrik Larsson, FIBA - Filip Bahlsten</td></tr>
+<tr><td>Beskrivning</td><td>KR System Butiken (Installations-/uppdateringsplattform)</td></tr>
+<tr><td>Ändringslogg</td><td>-</td></tr>
+<tr><td>Libfiler</td><td>-</td></tr>
+<tr><td>Events</td><td>-källkod saknas?-</td></tr>
+</table><br>
+<br /><hr><br /><br />
+<h2 id=UDKRUPPD_5107_KR_System_Produktdokument>UDKRUPPD 5107 KR System Produktdokument</h2>
+<div class="table-header">Filer till UDKRUPPD            </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>udkruppd.dc</td><td>UAD:</td><td></td><td>2022-10-17 14:31:40:000</td><td>1397</td><td>UDKRUPPD</td><td></td><td></td></tr>
+<tr><td>udkruppd.dt</td><td>UAD:</td><td></td><td>2022-10-17 14:32:56:000</td><td>483</td><td>UDKRUPPD</td><td>28523</td><td>2022-10-17 14:31:40:000</td></tr>
+</table><br>
+<br>
+
+<div class="table-header">Källkodsinfo för UAD:udkruppd.dt</div>
+<table class="tables">
+<tr><th>Avser</th><th>Innehåll</th></tr>
+<tr><td>Första rad</td><td>// 	KR-System AB</td></tr>
+<tr><td>Utvecklare</td><td>FRLA	- 	Fredrik Larsson</td></tr>
+<tr><td>Beskrivning</td><td>Visar dokument från ftp</td></tr>
+<tr><td>Ändringslogg</td><td>-</td></tr>
+<tr><td>Libfiler</td><td>-</td></tr>
+<tr><td>Events</td><td>-källkod saknas?-</td></tr>
+</table><br>
+<br /><hr><br /><br />
+<h2 id=UDTID_Grunddialog>UDTID Grunddialog</h2>
+<div class="table-header">Filer till UDTID               </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>UDTID.DC</td><td>UDD:</td><td></td><td>2022-06-01 13:11:48:080</td><td>1080</td><td>UDTID</td><td></td><td></td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=ULKRLICU_>ULKRLICU </h2>
+<div class="table-header">Filer till ULKRLICU            </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>ulkrlicu.b</td><td>PRO:</td><td></td><td>2022-11-25 13:11:01:925</td><td>817</td><td>ULKRLICU</td><td>21892</td><td>2022-11-25 13:11:01:948</td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=ULKRST_>ULKRST </h2>
+<div class="table-header">Filer till ULKRST              </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>ulkrst.b</td><td>PRO:</td><td></td><td>2022-11-25 13:14:11:841</td><td>834</td><td>ULKRST</td><td>134059</td><td>2022-11-25 13:14:11:851</td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h2 id=ULKRUPP_>ULKRUPP </h2>
+<div class="table-header">Filer till ULKRUPP             </div>
+<table class="tables">
+<tr><th>Fil</th><th>Mapp</th><th>Sign/Grupp</th><th>Datum</th><th>Storlek</th><th>Program</th><th>COx: Storlek</th><th>COx:Datum</th></tr>
+<tr><td>ulkrupp.b</td><td>PRO:</td><td></td><td>2022-11-25 13:11:01:938</td><td>848</td><td>ULKRUPP</td><td>285407</td><td>2022-11-25 13:11:01:955</td></tr>
+</table><br>
+<br>
+<br /><hr><br /><br />
+<h3>---- Slut Anpassrapport DEMO - PYDATA----</h3>
+</body></html>
